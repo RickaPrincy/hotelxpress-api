@@ -13,4 +13,4 @@ The application will be designed to accept :
 
 There is another feature that you can explore with the application.If you want to know more, you can check the [Specification Document](./CDC_WebWizards.pdf) (currently available only in French).
 
-If you are only interested in the database modelization, you can find it [here](./database/MCD_HotelXpress.png)
+If you are only interested in the `database modelization`, you can find it [here](./database/MCD_HotelXpress.png)
