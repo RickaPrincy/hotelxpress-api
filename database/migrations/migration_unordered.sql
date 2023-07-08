@@ -20,8 +20,8 @@ CREATE TABLE "room" (
     "room_name" VARCHAR(100) NOT NULL,
     "room_url_img" INT NOT NULL,
     "description" TEXT,
-    "price_per_night" DOUBLE NOT NULL,
-    "price_per_hour" DOUBLE NOT NULL,
+    "price_per_night" DOUBLE PRECISION NOT NULL,
+    "price_per_hour" DOUBLE PRECISION NOT NULL,
     "type" INT REFERENCES "room_type"("id") NOT NULL
 );
 
