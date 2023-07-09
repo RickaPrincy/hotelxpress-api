@@ -1,5 +1,50 @@
 -- ALL CREATE TABLE HERE
 
+-- create table "user_type"
+create table "user_type"(
+    id_user_type serial PRIMARY KEY,
+    user_role varchar not null (50) 
+);
+-- create table "user"
+create table "user"(
+    id_user serial PRIMARY KEY,
+    first_name varchar(255),
+    last_name varchar (255),
+    gender char(1) check (gender in('M','F')),
+    email varchar(50) not null UNIQUE,
+    phone_number varchar (30) not null UNIQUE,
+    profil_url varchar (255),
+    birthdate date,
+    password varchar(20) not null,
+    user_user_type int not null references user_type(id_user_type)
+);
+-- create table reservation
+create table "reservation"(
+    id_reservation serial PRIMARY KEY,
+    arrival_date timestamp not null,
+    departure_date timestamp not null,
+    booking_date timestamp not null,
+    user_reservation int not null references "user"(id_user)
+);
+-- create table payement
+create table "payement"(
+    id_payement serial Primary Key,
+    payement_date timestamp not null,
+    payement_method varchar (20) not null,
+    amount_paid  double not null,
+    payement_reservation int not null references reservation(id_reservation)
+);
+-- create table room
+create table "room"(
+    id_room serial PRIMARY KEY
+);
+-- create table reservation_contain
+create table "reservation_contain"(
+    id_reservation_contain serial PRIMARY KEY,
+    reservation_contain_room int not null references room(id_room),
+    reservation_contain_reservation int not null references reservation(id_reservation)
+);
+
 -- CREATE ROOM_TYPE
 CREATE TABLE "room_type" (
     "id_room_type" SERIAL PRIMARY KEY,
