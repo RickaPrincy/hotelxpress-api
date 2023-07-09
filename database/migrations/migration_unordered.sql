@@ -48,13 +48,13 @@ create table "reservation_contain"(
 -- CREATE ROOM_TYPE
 CREATE TABLE "room_type" (
     "id_room_type" SERIAL PRIMARY KEY,
-    "type" VARCHAR(100)
+    "type" VARCHAR(100) UNIQUE NOT NULL
 );
 
 -- CREATE ROOM_CONTENT 
 CREATE TABLE "room_content" (
     "id_content" SERIAL PRIMARY KEY,
-    "content_name" VARCHAR(100) NOT NULL,
+    "content_name" VARCHAR(100) UNIQUE NOT NULL,
     "content_url_img" VARCHAR(255) NOT NULL
 );
 
