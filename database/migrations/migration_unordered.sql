@@ -103,3 +103,17 @@ CREATE TABLE "partnership" (
     "is_accepted" BOOLEAN ,
     "massage" TEXT NOT NULL
 );
+
+-- CREATE HAVE_PROPOSITION
+CREATE TABLE "have_proposition" (
+    "id_have_proposition" SERIAL PRIMARY KEY,
+    "id_hotel" INT REFERENCES "hotel"("id_hotel"),
+    "id_partnership" INT REFERENCES "partnership"("id_partbership")
+);
+
+-- CREATE PROPOSE
+CREATE TABLE "propose" (
+    "id_propse" SERIAL PRIMARY KEY,
+    "id_user" INT REFERENCES "user"("id_user")
+    "id_partnership" INT REFERENCES "partnership"("id_partbership")
+); 
