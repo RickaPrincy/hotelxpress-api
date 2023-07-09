@@ -85,3 +85,21 @@ CREATE TABLE "give_room_feedback" (
     "id_room" INT REFERENCES "room"("id_room") NOT NULL,
     "id_user" INT REFERENCES "user"("id_user") NOT NULL
 );
+
+--CREATE GIVE_HOTEL_FEEDBACK
+CREATE TABLE "give_hotel_feeback" (
+    "id_give_hotel_feeback" SERIAL PRIMARY KEY,
+    "text_body" TEXT NOT NULL,
+    "date_feedback" DATE CHECK ("date_feedback" > CURRENT_DATE) DEFAULT CURRENT_DATE NOT NULL,
+    "id_hotel" INT REFERENCES "hotel"("id_hotel") NOT NULL,
+    "id_user" INT REFERENCES "user"("id_user") NOT NULL
+);
+
+-- CREATE PARTNERSHIP
+CREATE TABLE "partnership" (
+    "id_partnership" SERIAL PRIMARY KEY,
+    "date_proposition" timestamp NOT NULL,
+    "partnership_type" VARCHAR(200) NOT NULL,
+    "is_accepted" BOOLEAN ,
+    "massage" TEXT NOT NULL
+);
