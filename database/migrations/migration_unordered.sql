@@ -117,3 +117,12 @@ CREATE TABLE "propose" (
     "id_user" INT REFERENCES "user"("id_user")
     "id_partnership" INT REFERENCES "partnership"("id_partbership")
 ); 
+
+-- CREATE BOOKMARKS
+CREATE TABLE "bookmarks" (
+    "id_bookmarks" SERIAL PRIMARY KEY,
+    "bookmarks_name" VARCHAR(255) NOT NULL,
+    "id_user" INT REFERENCES "user"("id_user"),
+    "id_room" INT REFERENCES "room"("id_room")
+);
+
