@@ -126,3 +126,39 @@ CREATE TABLE "bookmarks" (
     "id_room" INT REFERENCES "room"("id_room")
 );
 
+-- CREATE HOTEL 
+CREATE TABLE "hotel" (
+    "id_hotel"  INT SERIAL PRIMARY KEY,
+    "hotel_name" VARCHAR(100),
+    "address" VARCHAR(255),
+    "city" VARCHAR(255),
+    "state" VARCHAR(255),
+    "phone_number" VARCHAR(100)
+);
+-- CREATE HAVE_MEDIA
+CREATE TABLE "HAVE_MEDIA"(
+ 
+);
+-- CREATE RESTO
+CREATE TABLE "RESTO"(
+    "id_resto" SERIAL PRIMARY KEY,
+    "speciality" VARCHAR (255),
+    "resto_url_img" VARCHAR(255),
+    "description" TEXT
+);
+-- CREATE HAVE_PROMOTION 
+CREATE TABLE "HAVE_PROMOTION" (
+  id_have_promotion INT SERIAL PRIMARY KEY,
+  id_promotion INT,
+  id_hotel INT,
+  FOREIGN KEY (id_promotion) REFERENCES promotion (id_promotion),
+  FOREIGN KEY (id_hotel) REFERENCES hotel (id_hotel)
+);
+
+-- CREATE PROMOTION  
+CREATE TABLE "PROMOTION" (
+    "id_promotion" int SERIAL PRIMARY KEY;
+    "start_date" DATE,
+    "end_date" DATE,
+    "reduction" DOUBLE 
+);
