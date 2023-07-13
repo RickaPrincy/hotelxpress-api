@@ -10,7 +10,7 @@ CREATE DATABASE hotelxpress;
 -- CREATE "user_type"
 CREATE TABLE "user_type"(
     "id_user_type" SERIAL PRIMARY KEY,
-    "user_type" VARCHAR UNIQUE NOT NULL
+    "user_type" VARCHAR(255) UNIQUE NOT NULL
 );
 
 -- CREATE ROOM_CONTENT 
@@ -64,6 +64,7 @@ CREATE TABLE "resto"(
     "description" TEXT NOT NULL
 );
 
+-- CREATE HOTEL
 CREATE TABLE "hotel" (
     "id_hotel"SERIAL PRIMARY KEY,
     "hotel_name" VARCHAR(100) NOT NULL,
@@ -74,31 +75,35 @@ CREATE TABLE "hotel" (
     "id_resto" INT REFERENCES "resto"("id_resto")
 );
 
+-- CREATE HAVE_PROMOTION
 CREATE TABLE "have_promotion" (
   "id_have_promotion" SERIAL PRIMARY KEY,
   "id_promotion" INT REFERENCES "promotion"("id_promotion") NOT NULL,
   "id_hotel" INT REFERENCES "hotel"("id_hotel") NOT NULL
 );
 
+-- CREATE ROOM
 CREATE TABLE "room" (
     "id_room"  SERIAL PRIMARY KEY,
     "room_category" VARCHAR(100) NOT NULL,
     "room_name" VARCHAR(100) NOT NULL,
-    "room_url_img" INT NOT NULL,
+    "room_url_img" varchar(255) NOT NULL,
     "description" TEXT NOT NULL,
     "price_per_night" DOUBLE PRECISION NOT NULL,
     "price_per_hour" DOUBLE PRECISION NOT NULL,
-    "type" INT REFERENCES "room_type"("id_room_type") NOT NULL
+    "type" INT REFERENCES "room_type"("id_room_type") NOT NULL,
+    "id_hotel_room" INT REFERENCES "hotel"("id_hotel") NOT NULL
 );
 
--- CREATE ROOM_CONTENT 
+-- CREATE ROOM_CONTAIN 
 CREATE TABLE "room_contain" (
     "id_contain" SERIAL PRIMARY KEY,
     "id_content" INT REFERENCES "room_content"("id_content") NOT NULL,
     "id_room" INT REFERENCES "room"("id_room") NOT NULL
 );
 
-CREATE TABLE "give_hotel_feeback" (
+-- CREATE FEEDBCK HOTEL
+CREATE TABLE "give_hotel_feedback" (
     "id_give_hotel_feeback" SERIAL PRIMARY KEY,
     "text_body" TEXT NOT NULL,
     "date_feedback" DATE CHECK ("date_feedback" > CURRENT_DATE) DEFAULT CURRENT_DATE NOT NULL,
@@ -106,6 +111,7 @@ CREATE TABLE "give_hotel_feeback" (
     "id_user" INT REFERENCES "user"("id_user") NOT NULL
 );
 
+-- CREATE FEEDBACK ROOM 
 CREATE TABLE "give_room_feedback" (
     "id_room_feedback" SERIAL PRIMARY KEY,
     "text_body" TEXT NOT NULL,
@@ -114,26 +120,30 @@ CREATE TABLE "give_room_feedback" (
     "id_user" INT REFERENCES "user"("id_user") NOT NULL
 );
 
+-- CREATE PARTENAIRSHIP
 CREATE TABLE "partnership" (
     "id_partnership" SERIAL PRIMARY KEY,
     "date_proposition" TIMESTAMP CHECK ( "date_proposition" >= CURRENT_DATE ) NOT NULL,
     "partnership_type" VARCHAR(200) NOT NULL,
     "is_accepted" BOOLEAN,
-    "massage" TEXT NOT NULL
+    "message" TEXT NOT NULL
 );
 
+-- CREATE PROPOSE
 CREATE TABLE "propose" (
     "id_propse" SERIAL PRIMARY KEY,
     "id_user" INT REFERENCES "user"("id_user") NOT NULL,
     "id_partnership" INT REFERENCES "partnership"("id_partnership") NOT NULL
 ); 
 
+-- CREATE HAVE PROPOSITION
 CREATE TABLE "have_proposition" (
     "id_have_proposition" SERIAL PRIMARY KEY,
     "id_hotel" INT REFERENCES "hotel"("id_hotel") NOT NULL,
     "id_partnership" INT REFERENCES "partnership"("id_partnership") NOT NULL
 );
 
+-- CREATE RESERVATION
 CREATE TABLE "reservation"(
     "id_reservation" SERIAL PRIMARY KEY,
     "arrival" TIMESTAMP CHECK ("arrival" > CURRENT_TIMESTAMP) NOT NULL,
@@ -142,7 +152,8 @@ CREATE TABLE "reservation"(
     "id_user" INT REFERENCES "user"("id_user") NOT NULL
 );
 
-CREATE TABLE "payement"(
+-- CREATE PAIMENT
+CREATE TABLE "payment"(
     "id_payement" SERIAL PRIMARY KEY,
     "date_paiment" TIMESTAMP CHECK ("date_paiment" < CURRENT_TIMESTAMP) NOT NULL,
     "method_paiment" VARCHAR(50) NOT NULL,
@@ -150,6 +161,7 @@ CREATE TABLE "payement"(
     "payement_reservation" INT NOT NULL REFERENCES RESERVATION(ID_RESERVATION)
 );
 
+-- CREATE RESERVATION CONTAIN
 CREATE TABLE "reservation_contain"(
     "id_reservation_contain" SERIAL PRIMARY KEY,
     "quantity" INT CHECK ("quantity" > 0 ) NOT NULL,
@@ -157,12 +169,14 @@ CREATE TABLE "reservation_contain"(
     "id_reservation" INT REFERENCES "reservation"("id_reservation") NOT NULL 
 );
 
+-- CREATE BOOKMARKS
 CREATE TABLE "bookmarks" (
     "id_bookmarks" SERIAL PRIMARY KEY,
     "bookmarks_name" VARCHAR(255) NOT NULL,
     "id_user" INT REFERENCES "user"("id_user") NOT NULL
 );
 
+-- CREATE BOOKMARKS CONTAIN
 CREATE TABLE "bookmarks_contain"(
     "id_bookmarks_contain" SERIAL PRIMARY KEY,
     "id_room" INT REFERENCES "room"("id_room") NOT NULL,
