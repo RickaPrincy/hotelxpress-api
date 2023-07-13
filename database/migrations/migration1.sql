@@ -1,8 +1,10 @@
-ALTER TABLE "boobamrks" 
+ALTER TABLE "boobmarks" 
 RENAME "bookmark";
 
 ALTER TABLE "bookmark" 
 RENAME COLUMN "bookmarks_id" TO "bookmark_id";
+
+ALTER TABLE "bookmark" DROP COLUMN "id_room";
 
 ALTER TABLE "bookmark" 
 RENAME COLUMN "bookmarks_name" TO "bookmark_name";
