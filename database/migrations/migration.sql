@@ -158,7 +158,7 @@ CREATE TABLE "payment"(
     "date_payment" TIMESTAMP CHECK ("date_payment" < CURRENT_TIMESTAMP) NOT NULL,
     "method_payment" VARCHAR(50) NOT NULL,
     "amount_paid" DOUBLE PRECISION NOT NULL,
-    "payement_reservation" INT NOT NULL REFERENCES RESERVATION(ID_RESERVATION)
+    "id_reservation" INT REFERENCES "reservation"("id_reservation") NOT NULL
 );
 
 -- CREATE RESERVATION CONTAIN
