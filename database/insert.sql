@@ -133,12 +133,12 @@ INSERT INTO "bookmark_contain" ("id_bookmark_contain","id_room", "id_bookmark") 
 
   ----- other insert for test -----
 
-  -- to test mobile money
-  INSERT INTO "payment" ("id_payment","date_payment","method_payment","amount_paid", "id_reservation")
-  VALUES (3, '2023-07-03 02:01:01', 'Mobile Money',5050.2,2),
-  (4, '2022-03-03 02:01:01', 'Mobile Money',500,3);
-
-  -- TO TEST BASIC8
+INSERT INTO "payment" ("id_payment","date_payment","method_payment","amount_paid", "id_reservation")
+VALUES (3, '2023-07-03 02:01:01', 'Mobile Money',5050.2,2),
+(4, '2022-03-03 02:01:01', 'Mobile Money',500,3);
 
 INSERT INTO "reservation" ("id_reservation","arrival", "departure", "date_reservation", "id_user") VALUES
-  (4,'2024-12-13 12:00:00', '2024-12-15 12:00:00', '2023-01-01 10:00:00', 3);
+(4,'2024-12-13 12:00:00', '2024-12-15 12:00:00', '2023-01-01 10:00:00', 3);
+
+INSERT INTO "reservation_contain" ("id_reservation_contain","quantity", "id_room", "id_reservation") VALUES
+(3, 1, 1, 4);
