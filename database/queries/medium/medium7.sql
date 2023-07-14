@@ -1,5 +1,5 @@
--- Afficher les hotels, avec le nombre de chambres par hotels
-SELECT "hotel"."hotel_name", COUNT(DISTINCT "room"."id_room")
-FROM "hotel" 
-LEFT JOIN "room" ON "hotel"."id_hotel" = "room"."id_hotel"
-GROUP BY "hotel"."hotel_name";
+-- Afficher chaque client, et le nombre de fois où il a annulé une reservation
+SELECT "user"."id_user", "user"."first_name", COUNT(DISTINCT "reservation"."id_reservation")
+FROM "user"
+LEFT JOIN "reservation" ON "user"."id_user" = "reservation"."id_user" AND "reservation"."is_annulled" = TRUE
+GROUP BY "user"."id_user", "user"."first_name";

@@ -1,5 +1,6 @@
--- Afficher chaque client, et le nombre de fois où il a annulé une reservation
-SELECT "user"."id_user", "user"."first_name", COUNT(DISTINCT "reservation"."id_reservation")
-FROM "user"
-LEFT JOIN "reservation" ON "user"."id_user" = "reservation"."id_user" AND "reservation"."is_annulled" = TRUE
-GROUP BY "user"."id_user", "user"."first_name";
+-- Afficher le nombre total des réservations par hotel
+SELECT "hotel"."hotel_name", COUNT(DISTINCT "reservation_contain"."id_reservation")
+FROM "reservation_contain"
+INNER JOIN "room" ON "reservation_contain"."id_room" = "room"."id_room"
+RIGHT JOIN "hotel" ON "room"."id_hotel" = "hotel"."id_hotel"
+GROUP BY "hotel"."hotel_name";
