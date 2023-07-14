@@ -2,7 +2,8 @@
 INSERT INTO "user_type" ("id_user_type", "user_type") VALUES
 (1,'Admin'),
 (2,'Receptionnist'),
-(3,'Customer');
+(3,'Loyal_Customer'),
+(4,'Customer');
 
 INSERT INTO "room_content" ("id_room_content", "content_name", "content_url_img") VALUES
   (1,'TV', 'https://example.com/tv.jpg'),
@@ -39,7 +40,14 @@ INSERT INTO "user" ("id_user","first_name", "last_name", "gender", "email", "pho
   (3,'Michael', 'Johnson', 'M', 'michael.johnson@example.com', '9876543210', 'https://example.com/profile.jpg', 'canadien', '1985-05-05', 'password789', 3),
   (4,'Emily', 'Brown', 'F', 'emily.brown@example.com', '0123456789', 'https://example.com/profile.jpg', 'africain', '1998-08-08', 'passwordabc', 3),
   (5,'David', 'Wilson', 'M', 'david.wilson@example.com', '5678901234', 'https://example.com/profile.jpg', 'USA', '1977-07-07', 'passworddef', 3);
-
+-- INSERT INTO "user"
+INSERT INTO "user" ("id_user", "first_name", "last_name", "gender", "email", "phone_number", "profil_url_img", "nationality", "birthdate", "password", "user_type")
+VALUES
+(6, 'Emma', 'Johnson', 'F', 'emma.johnson@example.com', '5432109876', 'https://example.com/profile.jpg', 'British', '1994-04-04', 'passwordxyz', 2),
+(7, 'Liam', 'Miller', 'M', 'liam.miller@example.com', '3210987654', 'https://example.com/profile.jpg', 'Irish', '1999-09-09', 'password1234', 3),
+(8, 'Olivia', 'Davis', 'F', 'olivia.davis@example.com', '6543210987', 'https://example.com/profile.jpg', 'American', '1991-11-11', 'password5678', 1),
+(9, 'Noah', 'Wilson', 'M', 'noah.wilson@example.com', '8901234567', 'https://example.com/profile.jpg', 'Canadian', '1988-12-12', 'password90', 2),
+(10, 'Sophia', 'Taylor', 'F', 'sophia.taylor@example.com', '4567890123', 'https://example.com/profile.jpg', 'Australian', '1996-06-06', 'passwordabcd', 1);
 
 -- INSERT INTO "media"
 INSERT INTO "media" ("id_media","url_media") VALUES
@@ -113,8 +121,8 @@ INSERT INTO "reservation" ("id_reservation","arrival", "departure", "date_reserv
 
 -- INSERT INTO "payment"
 INSERT INTO "payment" ("id_payment","date_payment", "method_payment", "amount_paid", "id_reservation") VALUES
-  (1,'2023-07-01 10:00:00', 'Credit Card', 500, 2),
-  (2,'2023-07-01 10:00:00', 'PayPal', 600, 3);
+  (1,'2023-07-01 10:00:00', 'Mobile Money', 500, 2),
+  (2,'2023-07-01 10:00:00', 'Cash', 600, 3);
 
 -- INSERT INTO "reservation_contain"
 INSERT INTO "reservation_contain" ("id_reservation_contain","quantity", "id_room", "id_reservation") VALUES

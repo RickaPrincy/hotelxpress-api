@@ -6,4 +6,4 @@ ON "reservation"."id_reservation" = "reservation_contain"."id_reservation"
 INNER JOIN "room"
 ON "reservation_contain"."id_room" = "room"."id_room"
 WHERE "room"."id_hotel" = ?
-ORDER BY "reservation"."date_reservation" ASC;
+ORDER BY "reservation"."date_reservation" DESC;
