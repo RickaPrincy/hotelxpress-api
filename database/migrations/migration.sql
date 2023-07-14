@@ -15,7 +15,7 @@ CREATE TABLE "user_type"(
 
 -- CREATE ROOM_CONTENT 
 CREATE TABLE "room_content" (
-    "id_content" SERIAL PRIMARY KEY,
+    "id_room_content" SERIAL PRIMARY KEY,
     "content_name" VARCHAR(100) UNIQUE NOT NULL,
     "content_url_img" VARCHAR(255) NOT NULL
 );
@@ -92,13 +92,13 @@ CREATE TABLE "room" (
     "price_per_night" DOUBLE PRECISION NOT NULL,
     "price_per_hour" DOUBLE PRECISION NOT NULL,
     "type" INT REFERENCES "room_type"("id_room_type") NOT NULL,
-    "id_hotel_room" INT REFERENCES "hotel"("id_hotel") NOT NULL
+    "id_hotel" INT REFERENCES "hotel"("id_hotel") NOT NULL
 );
 
 -- CREATE ROOM_CONTAIN 
 CREATE TABLE "room_contain" (
-    "id_contain" SERIAL PRIMARY KEY,
-    "id_content" INT REFERENCES "room_content"("id_content") NOT NULL,
+    "id_room_contain" SERIAL PRIMARY KEY,
+    "id_room_content" INT REFERENCES "room_content"("id_room_content") NOT NULL,
     "id_room" INT REFERENCES "room"("id_room") NOT NULL
 );
 

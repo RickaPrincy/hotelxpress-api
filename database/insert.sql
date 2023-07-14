@@ -4,7 +4,7 @@ INSERT INTO "user_type" ("id_user_type", "user_type") VALUES
 (2,'Receptionnist'),
 (3,'Customer');
 
-INSERT INTO "room_content" ("id_content", "content_name", "content_url_img") VALUES
+INSERT INTO "room_content" ("id_room_content", "content_name", "content_url_img") VALUES
   (1,'TV', 'https://example.com/tv.jpg'),
   (2,'WiFi', 'https://example.com/wifi.jpg'),
   (3,'Jacuzzi', 'https://example.com/jacuzzi.jpg'),
@@ -68,7 +68,7 @@ INSERT INTO "have_promotion" ("id_promotion", "id_hotel") VALUES
   (1, 2);
 
 -- INSERT INTO "room"
-INSERT INTO "room" ("id_room","room_category", "room_name", "room_url_img", "description", "price_per_night", "price_per_hour", "type","id_hotel_room") VALUES
+INSERT INTO "room" ("id_room","room_category", "room_name", "room_url_img", "description", "price_per_night", "price_per_hour", "type","id_hotel") VALUES
   (1,'Standard', 'Room 107', 'https://example.com/room.jpg', 'Standard Room', 100, 10, 4, 2),
   (2,'Deluxe', 'Room 201', 'https://example.com/room.jpg', 'Deluxe Room', 150, 15, 2, 3),
   (3,'Suite', 'Room 301', 'https://example.com/room.jpg', 'Suite Room', 200, 20, 3, 2),
@@ -76,7 +76,7 @@ INSERT INTO "room" ("id_room","room_category", "room_name", "room_url_img", "des
   (5,'VIP', 'Room 501', 'https://example.com/room.jpg', 'VIP Room', 300, 30, 5, 2);
 
 -- INSERT INTO "room_contain"
-INSERT INTO "room_contain" ("id_content", "id_room") VALUES
+INSERT INTO "room_contain" ("id_room_content", "id_room") VALUES
   (1, 1),
   (2, 1),
   (3, 2);
@@ -130,33 +130,3 @@ INSERT INTO "bookmark" ("id_bookmark","bookmark_name", "id_user") VALUES
 INSERT INTO "bookmark_contain" ("id_bookmark_contain","id_room", "id_bookmark") VALUES
   (1,1, 1),
   (2,2, 2);
-
-  ----- other insert for test -----
-
-INSERT INTO "payment" ("id_payment","date_payment","method_payment","amount_paid", "id_reservation")
-VALUES (3, '2023-07-03 02:01:01', 'Mobile Money',5050.2,2),
-(4, '2022-03-03 02:01:01', 'Mobile Money',500,3);
-
-INSERT INTO "reservation" ("id_reservation","arrival", "departure", "date_reservation", "id_user") VALUES
-(4,'2024-12-13 12:00:00', '2024-12-15 12:00:00', '2023-01-01 10:00:00', 3);
-
-INSERT INTO "reservation" ("id_reservation","arrival", "departure", "date_reservation", "id_user") VALUES
-(5,'2023-07-14 00:07:00', '2024-12-15 12:00:00', '2023-01-01 10:00:00', 3);
-
-
-INSERT INTO "reservation_contain" ("id_reservation_contain","quantity", "id_room", "id_reservation") VALUES
-(3, 1, 1, 4);
-
-UPDATE "reservation" SET "is_annulled" = TRUE WHERE "id_user" = 3;
-
-UPDATE "reservation" SET "is_annulled" = TRUE WHERE "id_user" = 4;
-
-UPDATE "reservation" SET "departure" = '2023-08-01 03:03:03', "arrival" = '2023-08-08 01:01:01'
-WHERE "id_reservation" = 5;
-
-UPDATE "reservation" SET "is_annulled" = FALSE
-WHERE "id_reservation" = 5;
-
-
-INSERT INTO "reservation_contain" ("id_reservation_contain","quantity", "id_room", "id_reservation") VALUES
-  (4, 1, 3, 5);
