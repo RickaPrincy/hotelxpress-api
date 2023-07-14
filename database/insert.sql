@@ -150,3 +150,13 @@ INSERT INTO "reservation_contain" ("id_reservation_contain","quantity", "id_room
 UPDATE "reservation" SET "is_annulled" = TRUE WHERE "id_user" = 3;
 
 UPDATE "reservation" SET "is_annulled" = TRUE WHERE "id_user" = 4;
+
+UPDATE "reservation" SET "departure" = '2023-08-01 03:03:03', "arrival" = '2022-01-01 01:01:01'
+WHERE "id_reservation" = 5;
+
+UPDATE "reservation" SET "is_annulled" = FALSE
+WHERE "id_reservation" = 5;
+
+
+INSERT INTO "reservation_contain" ("id_reservation_contain","quantity", "id_room", "id_reservation") VALUES
+  (4, 1, 3, 5);
