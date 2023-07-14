@@ -139,9 +139,14 @@ VALUES (3, '2023-07-03 02:01:01', 'Mobile Money',5050.2,2),
 
 INSERT INTO "reservation" ("id_reservation","arrival", "departure", "date_reservation", "id_user") VALUES
 (4,'2024-12-13 12:00:00', '2024-12-15 12:00:00', '2023-01-01 10:00:00', 3);
+
 INSERT INTO "reservation" ("id_reservation","arrival", "departure", "date_reservation", "id_user") VALUES
-(5,CURRENT_TIMESTAMP, '2024-12-15 12:00:00', '2023-06-01 10:00:00', 3);
+(5,'2023-07-14 00:07:00', '2024-12-15 12:00:00', '2023-01-01 10:00:00', 3);
 
 
 INSERT INTO "reservation_contain" ("id_reservation_contain","quantity", "id_room", "id_reservation") VALUES
 (3, 1, 1, 4);
+
+UPDATE "reservation" SET "is_annulled" = TRUE WHERE "id_user" = 3;
+
+UPDATE "reservation" SET "is_annulled" = TRUE WHERE "id_user" = 4;

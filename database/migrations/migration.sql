@@ -146,9 +146,9 @@ CREATE TABLE "have_proposition" (
 -- CREATE RESERVATION
 CREATE TABLE "reservation"(
     "id_reservation" SERIAL PRIMARY KEY,
-    "arrival" TIMESTAMP CHECK ("arrival" > CURRENT_TIMESTAMP) NOT NULL,
-    "departure" TIMESTAMP CHECK ("departure" > CURRENT_TIMESTAMP) NOT NULL,
-    "date_reservation" TIMESTAMP CHECK ("date_reservation" > CURRENT_TIMESTAMP)NOT NULL,
+    "arrival" TIMESTAMP NOT NULL,
+    "departure" TIMESTAMP CHECK ("departure" > "arrival") NOT NULL,
+    "date_reservation" TIMESTAMP NOT NULL,
     "id_user" INT REFERENCES "user"("id_user") NOT NULL
 );
 
