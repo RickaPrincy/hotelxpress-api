@@ -1,6 +1,5 @@
--- Afficher la liste des chambres occupées actuellement
-SELECT "room"."id_room", "room"."room_name" FROM "room"
-INNER JOIN "reservation_contain" 
-ON "room"."id_room"  = "reservation_contain"."id_room"
-INNER JOIN "reservation_actual" 
-ON "reservation_contain"."id_reservation" = "reservation_actual"."id_reservation";
+-- Afficher les hotels, avec le nombre de chambres par hotels
+SELECT "hotel"."hotel_name", COUNT(DISTINCT "room"."id_room")
+FROM "hotel" 
+LEFT JOIN "room" ON "hotel"."id_hotel" = "room"."id_hotel"
+GROUP BY "hotel"."hotel_name";
