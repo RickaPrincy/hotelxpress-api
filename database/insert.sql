@@ -151,7 +151,7 @@ UPDATE "reservation" SET "is_annulled" = TRUE WHERE "id_user" = 3;
 
 UPDATE "reservation" SET "is_annulled" = TRUE WHERE "id_user" = 4;
 
-UPDATE "reservation" SET "departure" = '2023-08-01 03:03:03', "arrival" = '2022-01-01 01:01:01'
+UPDATE "reservation" SET "departure" = '2023-08-01 03:03:03', "arrival" = '2023-08-08 01:01:01'
 WHERE "id_reservation" = 5;
 
 UPDATE "reservation" SET "is_annulled" = FALSE
