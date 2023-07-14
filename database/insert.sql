@@ -130,3 +130,11 @@ INSERT INTO "bookmark" ("id_bookmark","bookmark_name", "id_user") VALUES
 INSERT INTO "bookmark_contain" ("id_bookmark_contain","id_room", "id_bookmark") VALUES
   (1,1, 1),
   (2,2, 2);
+
+
+-- INSERT INTO "reservation"
+INSERT INTO "reservation" ("id_reservation","arrival", "departure", "date_reservation", "id_user") VALUES
+(6,'2023-01-13 12:00:00', '2024-12-15 12:00:00', '2023-07-01 10:00:00', 3);
+
+INSERT INTO "reservation_contain" ("id_reservation_contain","quantity", "id_room", "id_reservation") VALUES
+  (6, 2, 5, 2);

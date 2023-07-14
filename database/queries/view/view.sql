@@ -24,7 +24,7 @@ CREATE VIEW "reservation_price_total" AS
 CREATE VIEW "reservation_price_paid" AS (
     SELECT "reservation"."id_reservation", SUM("payment"."amount_paid") as "total_paid"
     FROM "reservation" 
-    INNER JOIN "payment" 
+    LEFT JOIN "payment" 
     ON "payment"."id_reservation" = "reservation"."id_reservation"
     GROUP BY "reservation"."id_reservation"
 );
