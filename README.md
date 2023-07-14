@@ -12,6 +12,8 @@ The application will be designed to accept :
 
 There is another feature that you can explore with the application.If you want to know more, you can check the [Specification Document](./CDC_WebWizards.pdf) (currently available only in French).
 
-Here is the `database modelization`
+- The implementation of database is [here](./database/database.md)
+
+And here is the `database modelization`
 
 ![Database Modelization](./database/MCD.png "Database Modezation")
