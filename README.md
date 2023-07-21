@@ -23,15 +23,15 @@ __TOKEN=ggggggggggdgdddddkfdf54df54df215f54df54d15dfd1fdf12df1d2f1d
 ```
 - You can also find a  `.env` example [here](./.env.example)) :
 
-- The token is just some text that you choose, which is necessary for authentication.
+- The token just some text that you want which is necessary for the authentification
 
-- Next, install all dependencies with the following command:
+- Next, install all dependecies with the following command
 
 ```sh
 npm install
 ```
 
-- That's it! You can now run the server with:
+- That's it, you can now run the server with
 
 ```sh
 npm start

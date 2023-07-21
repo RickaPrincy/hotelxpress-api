@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken"
+import * as jwt from "jsonwebtoken"
 import generateToken from "./token"
 import { NextFunction, Request, Response } from "express";
 import * as dotenv from "dotenv";
@@ -13,7 +13,7 @@ dotenv.config();
  * If the token is valid, the function proceeds to the next middleware or route handler.
  * If the token is invalid or missing, it returns a 403 (Forbidden) or 500 (Internal Server Error) status accordingly.
  *
- * @param req - The HTTP request object containing the request headers (req.headers).
+ * @param req - The HTTP request object
  * @param res - The HTTP response object used to send the authentication status.
  * @param next - The callback function to call the next middleware or route handler if the token is valid.
  */
@@ -24,12 +24,12 @@ export function checkAuthentification(req: Request, res: Response, next: NextFun
     if (token) {
         jwt.verify(token, process.env.__TOKEN!, (err, user) => {
             if (err)
-                return res.status(500).send({message: "Sorry, there is some problems on the server"});
+                return res.status(500).send({ message: "Sorry, there is some problems on the server" });
             next();
         });
     }
     else {
-        return res.status(403).send({message: "authentification needed"});
+        return res.status(403).send({ message: "authentification needed" });
     }
 }
 
@@ -43,17 +43,21 @@ export function checkAuthentification(req: Request, res: Response, next: NextFun
  * @returns Nothing directly, but sends a JSON response containing the JWT token and user ID upon successful authentication.
  */
 export function authentificate(req: Request, res: Response) {
-    const { username, password } = req.body;
+    if (req.body) {
+        const { first_name, password } = req.body;
 
-    pool.query(readQuery("auth", 1), [username, password], (error: Error, response: QueryResult) => {
-        if (error)
-            res.status(500).send({error: "Sorry, there is some problems on the server" });
-        if (response.rows.length === 0)
-            res.status(401).send({ message: "authentification failed"})
-        else {
-            const token = generateToken({ username: username, password: password });
-            const id = response.rows[0].id_user;
-            res.send({ token: "Bearer " + token, user_id: id });
-        }
-    })
+        pool.query(readQuery("other", 1), [first_name, password], (error: Error, response: QueryResult) => {
+            if (error)
+                res.status(401).send({ message: "authentification failed" })
+            else if (response.rows.length === 0)
+                res.status(401).send({ message: "authentification failed" })
+            else {
+                const token = generateToken({ username: first_name, password: password });
+                const id = response.rows[0].id_user;
+                res.send({ token: "Bearer " + token, user_id: id });
+            }
+        })
+    }else{
+        res.status(401).send({ message: "authentification failed" });
+    }
 };

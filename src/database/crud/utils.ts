@@ -1,16 +1,16 @@
 import * as fs from "fs";
 
-export type QueryType = "basic" | "hard" | "medium" | "auth";
+export type QueryType = "basic" | "hard" | "medium" | "other";
 
 /**
  * Reads and retrieves a SQL query from a file based 
  * on the provided QueryType and number.
- * @param type - The type of the query, one of "basic", "hard", "medium" or "auth".
+ * @param type - The type of the query, one of "basic", "hard", "medium" or "other".
  * @param number - The number associated with the query to be retrieved.
  * @returns The SQL query as a string, or an empty string if the file doesn't exist.
  */
 export function readQuery(type:QueryType, number: number): string{
-    const path = `src/database/crud/queries/${type}/${type}${number}.sql`;
+    const path = `src/database/queries/${type}/${type}${number}.sql`;
     
     if(fs.existsSync(path)){
         let query = fs.readFileSync(path,"utf-8");
