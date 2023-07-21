@@ -1,5 +1,5 @@
-import * as jwt from "jsonwebtoken"
-import generateToken from "./token"
+import * as jwt from "jsonwebtoken";
+import generateToken from "./token";
 import { NextFunction, Request, Response } from "express";
 import * as dotenv from "dotenv";
 import { pool } from "../database/connection/database";
@@ -18,8 +18,8 @@ dotenv.config();
  * @param next - The callback function to call the next middleware or route handler if the token is valid.
  */
 export function checkAuthentification(req: Request, res: Response, next: NextFunction) {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader?.split(' ')[1];
+    const authHeader = req.headers["authorization"];
+    const token = authHeader?.split(" ")[1];
 
     if (token) {
         jwt.verify(token, process.env.__TOKEN!, (err, user) => {
@@ -48,16 +48,16 @@ export function authentificate(req: Request, res: Response) {
 
         pool.query(readQuery("other", 1), [first_name, password], (error: Error, response: QueryResult) => {
             if (error)
-                res.status(401).send({ message: "authentification failed" })
+                res.status(401).send({ message: "authentification failed" });
             else if (response.rows.length === 0)
-                res.status(401).send({ message: "authentification failed" })
+                res.status(401).send({ message: "authentification failed" });
             else {
                 const token = generateToken({ username: first_name, password: password });
                 const id = response.rows[0].id_user;
                 res.send({ token: "Bearer " + token, user_id: id });
             }
-        })
+        });
     }else{
         res.status(401).send({ message: "authentification failed" });
     }
-};
+}
