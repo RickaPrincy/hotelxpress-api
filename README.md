@@ -1,19 +1,38 @@
-# HOTELXPRESS 
+# HotelXpress API
 
-## Description
-HotelXpress is a web application designed to simplify hotel reservations and provide an enhanced booking experience for customers. It allows users to search for hotels, view available rooms, and make reservations seamlessly.
+This is a simple API for [HotelXpress](./HotelXpress.md), providing essential functionalities to manage hotel operations.
 
-## Features
-The application will be designed to accept : 
-- User Registration
-- Hotel Search
-- Room Availability
-- Reservation
+# Getting started
+To run the server locally, you need to make some configurations:
 
-There is another feature that you can explore with the application.If you want to know more, you can check the [Specification Document](./CDC_WebWizards.pdf) (currently available only in French).
+- First, create a file named `.env` and write your configurations like this:
 
-- The implementation of database is [here](./database/database.md)
+```
+#database configuration
+__DB_PORT=5432
+__DB_USER=postgres
+__DB_PASSWORD=12345678
 
-And here is the `database modelization`
 
-![Database Modelization](./database/MCD.png "Database Modezation")
+#server configuration
+__SERVER_PORT=5000
+
+#token
+__TOKEN=ggggggggggdgdddddkfdf54df54df215f54df54d15dfd1fdf12df1d2f1d
+
+```
+- You can also find a  `.env` example [here](./.env.example)) :
+
+- The token is just some text that you choose, which is necessary for authentication.
+
+- Next, install all dependencies with the following command:
+
+```sh
+npm install
+```
+
+- That's it! You can now run the server with:
+
+```sh
+npm start
+```

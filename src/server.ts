@@ -1,10 +1,17 @@
-import { QueryResult } from "pg";
-import { pool } from "./database/connection/database";
-import { readQuery } from "./database/crud/utils";
+import * as express from "express";
+import * as dotenv from "dotenv";
+import { router } from "./controller/router";
+import { json } from "express";
 
-pool.query(readQuery("basic",3),[2],(err: Error,res: QueryResult)=>{
-    if(err){
-        console.log(err.message); 
-    }
-    console.log(res.rows);
-});
+//server configuration
+dotenv.config();
+const app = express();
+const port = +process.env.__SERVER_PORT! || 5000; 
+
+//all middleware
+app.use(router);
+app.use(json())
+//server launched
+app.listen(port, ()=>{
+    console.log("App listening on port : " + port);
+})
