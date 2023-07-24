@@ -1,14 +1,12 @@
 import * as jwt from "jsonwebtoken";
 import * as dotenv from "dotenv";
+import { User } from "../model/User";
 
 //dotenv configuration 
 dotenv.config();
 
 //necessary type for the generateAccessToken
-type UserType ={
-    username: string,
-    password: string
-}
+type UserType = Pick<User,"first_name" | "password">
 
 //-------------------------------------------
 function generateToken(payload: UserType) {

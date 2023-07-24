@@ -24,7 +24,7 @@ export function checkAuthentification(req: Request, res: Response, next: NextFun
     if (token) {
         jwt.verify(token, process.env.__TOKEN!, (err, user) => {
             if (err)
-                return res.status(500).send({ message: "Sorry, there is some problems on the server" });
+                return res.status(403).send({ message: "Token not valid" });
             next();
         });
     }
@@ -52,7 +52,7 @@ export function authentificate(req: Request, res: Response) {
             else if (response.rows.length === 0)
                 res.status(401).send({ message: "authentification failed" });
             else {
-                const token = generateToken({ username: first_name, password: password });
+                const token = generateToken({ first_name: first_name, password: password });
                 const id = response.rows[0].id_user;
                 res.send({ token: "Bearer " + token, user_id: id });
             }
