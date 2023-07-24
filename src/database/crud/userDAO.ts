@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { pool } from "../connection/database";
-import { readQuery } from "./utils";
+import { readQuery } from "../../utils/readQuery";
 import { QueryResult } from "pg";
 
 export function insertUser(req: Request, res: Response) {

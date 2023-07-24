@@ -3,7 +3,7 @@ import generateToken from "./token";
 import { NextFunction, Request, Response } from "express";
 import * as dotenv from "dotenv";
 import { pool } from "../database/connection/database";
-import { readQuery } from "../database/crud/utils";
+import { readQuery } from "../utils/readQuery";
 import { QueryResult } from "pg";
 
 dotenv.config();
@@ -22,6 +22,7 @@ export function checkAuthentification(req: Request, res: Response, next: NextFun
     const token = authHeader?.split(" ")[1];
 
     if (token) {
+        // eslint-disable-next-line
         jwt.verify(token, process.env.__TOKEN!, (err, user) => {
             if (err)
                 return res.status(403).send({ message: "Token not valid" });

@@ -20,5 +20,5 @@ app.use(router);
 
 //server launched
 app.listen(port, ()=>{
-    console.log("App listening on port : " + port);
+    console.log(`App launching on : http://localhost:${port}`);
 });

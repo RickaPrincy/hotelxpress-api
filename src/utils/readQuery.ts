@@ -10,7 +10,7 @@ export type QueryType = "basic" | "hard" | "medium" | "other";
  * @returns The SQL query as a string, or an empty string if the file doesn't exist.
  */
 export function readQuery(type:QueryType, number: number): string{
-    const path = `src/database/queries/${type}/${type}${number}.sql`;
+    const path = `database/queries/${type}/${type}${number}.sql`;
     
     if(fs.existsSync(path)){
         let query = fs.readFileSync(path,"utf-8");
@@ -21,5 +21,5 @@ export function readQuery(type:QueryType, number: number): string{
         
         return query;
     }
-    return ""
+    return "";
 }

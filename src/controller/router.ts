@@ -14,6 +14,6 @@ router.get("/home",(req: Request, res: Response)=>{
 });
 
 
-router.post("/test", upload.single('imageAdd'), (req:Request, res:Response)=>{
+router.post("/file", upload.single("imageAdd"), (req:Request, res:Response)=>{
     res.send({message: "ok"});
-})
+});
