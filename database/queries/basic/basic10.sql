@@ -2,4 +2,4 @@
 -- ? province donnée par client
 SELECT "hotel_name", "address" 
 FROM "hotel"
-WHERE "city"=?
+WHERE "city"=$1
