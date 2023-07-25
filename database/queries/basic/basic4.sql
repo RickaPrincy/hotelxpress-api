@@ -4,5 +4,5 @@
 SELECT "room_name"
 FROM "room"
 JOIN "room_type" ON "room"."type" = "room_type"."id_room_type"
-WHERE "room_type"."type" = ? 
-AND "room"."id_hotel" = ??;
+WHERE "room_type"."type" = $1 
+AND "room"."id_hotel" = $2;

@@ -4,4 +4,4 @@
 --  ?? : prix max donnée par le client
 SELECT "room_name", "room_category", "description"
 FROM "room"
-WHERE "price_per_night" BETWEEN (?) AND (??);
+WHERE "price_per_night" BETWEEN ($1) AND ($2);
