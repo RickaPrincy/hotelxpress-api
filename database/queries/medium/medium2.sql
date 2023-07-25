@@ -2,4 +2,4 @@
 -- ? : id of the given user
 SELECT COUNT(DISTINCT "reservation"."id_reservation") 
 FROM "reservation"
-WHERE "reservation"."id_user" = ?;
+WHERE "reservation"."id_user" = $1;

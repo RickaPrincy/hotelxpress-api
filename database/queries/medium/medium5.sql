@@ -4,7 +4,7 @@
 SELECT *
 FROM rooms
 WHERE wifi = true
-  AND hot_water = true
-  AND balcony = true
-  AND jacuzzi = true
-  AND capacity >= X;
+AND hot_water = true
+AND balcony = true
+AND jacuzzi = true
+AND capacity >= X;
