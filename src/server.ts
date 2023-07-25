@@ -1,6 +1,7 @@
 import * as express from "express";
 import * as dotenv from "dotenv";
-import { router } from "./controller/router";
+import { privateRouter} from "./controller/privateRouter";
+import { publicRouter } from "./controller/publicRouter";
 import { json } from "express";
 import { checkAuthentification } from "./security/authentificate";
 import * as cors from "cors";
@@ -13,10 +14,10 @@ const port = +process.env.__SERVER_PORT! || 5000;
 //all middleware
 app.use(cors());
 app.use(json());
-app.use("/file",checkAuthentification);
-app.use("/file",express.static("./uploads"));
-app.use("/home", checkAuthentification);
-app.use(router);
+app.use(publicRouter);
+app.use(checkAuthentification);
+app.use("/file",express.static("./uploads"))
+app.use(privateRouter);
 
 //server launched
 app.listen(port, ()=>{
