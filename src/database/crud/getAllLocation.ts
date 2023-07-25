@@ -11,7 +11,7 @@ export function getAllLocation(req: Request, res: Response) {
                 console.log(error);
                 res.status(400).send({ message: "something went wrong" })
             } else {
-                res.send({ locations: response });
+                res.send({ locations: response.rows });
             }
         }
         )
