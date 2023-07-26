@@ -15,8 +15,9 @@ const port = +process.env.__SERVER_PORT! || 5000;
 app.use(cors());
 app.use(json());
 app.use(publicRouter);
+app.use("/file",express.static("./uploads"));
 app.use(checkAuthentification);
-app.use("/file",express.static("./uploads"))
+app.use("/private",express.static("./privateFiles"));
 app.use(privateRouter);
 
 //server launched
