@@ -1,1 +1,1 @@
-SELECT "user"."id_user" from "user" WHERE "first_name"=$1 AND "password"=$2;
+SELECT "user"."id_user" from "user" WHERE "email"=$1 AND "password"=$2;

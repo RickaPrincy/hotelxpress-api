@@ -6,7 +6,7 @@ import { User } from "../model/User";
 dotenv.config();
 
 //necessary type for the generateAccessToken
-type UserType = Pick<User,"first_name" | "password">
+type UserType = Pick<User,"email" | "password">
 
 //-------------------------------------------
 function generateToken(payload: UserType) {

@@ -45,15 +45,15 @@ export function checkAuthentification(req: Request, res: Response, next: NextFun
  */
 export function authentificate(req: Request, res: Response) {
     if (req.body) {
-        const { first_name, password } = req.body;
+        const {email, password } = req.body;
 
-        pool.query(readQuery("other", 1), [first_name, password], (error: Error, response: QueryResult) => {
+        pool.query(readQuery("other", 1), [email, password], (error: Error, response: QueryResult) => {
             if (error)
                 res.status(401).send({ message: "authentification failed" });
             else if (response.rows.length === 0)
                 res.status(401).send({ message: "authentification failed" });
             else {
-                const token = generateToken({ first_name: first_name, password: password });
+                const token = generateToken({ email: email, password: password });
                 const id = response.rows[0].id_user;
                 res.send({ token: "Bearer " + token, user_id: id });
             }
