@@ -3,8 +3,9 @@ import { signin } from "../services/signin";
 import { signup } from "../services/signup";
 import { deleteUser } from "../services/user/userCrud";
 import { getUserById } from "../services/user/getUser";
-import { getAllRooms, getRoomById, getRoomByIntervalAndLocation } from "../services/room/getRooms";
+import { getAllRooms, getRoomById, getRoomByIntervalAndLocation } from "../services/room/getRoom";
 import { deleteRoom } from "../services/room/roomCrud";
+import { getAllHotels, getHotelById } from "../services/hotel/getHotel";
 
 export const publicRouter = Router();
 
@@ -14,7 +15,8 @@ publicRouter.get("/find/room/interval", getRoomByIntervalAndLocation);
 publicRouter.get("/user/:id",getUserById);
 publicRouter.get("/room/:id",getRoomById);
 publicRouter.get("/delete/room/:id",deleteRoom);
-
+publicRouter.get("/hotels",getAllHotels);
+publicRouter.get("/hotel/:id", getHotelById);
 
 publicRouter.get("/rooms", getAllRooms);
 publicRouter.post("/signin",signin);

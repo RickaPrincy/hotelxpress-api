@@ -10,4 +10,4 @@ SELECT
     "birthdate",
     "user_type"
 FROM
-    "user;
+    "user";
