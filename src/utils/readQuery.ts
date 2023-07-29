@@ -1,19 +1,15 @@
 import * as fs from "fs";
 
-export type QueryType = "basic" | "hard" | "medium" | "other";
-
-/**
- * Reads and retrieves a SQL query from a file based 
- * on the provided QueryType and number.
- * @param type - The type of the query, one of "basic", "hard", "medium" or "other".
- * @param number - The number associated with the query to be retrieved.
+/*
+ * Reads and retrieves a SQL query from a givenPath 
+ * @param path - path to the query to be retrieved.
  * @returns The SQL query as a string, or an empty string if the file doesn't exist.
  */
-export function readQuery(type:QueryType, number: number): string{
-    const path = `database/queries/${type}/${type}${number}.sql`;
+export function readQuery(path: string): string{
+    const pathToFile= `database/queries/${path}.sql`;
     
-    if(fs.existsSync(path)){
-        let query = fs.readFileSync(path,"utf-8");
+    if(fs.existsSync(pathToFile)){
+        let query = fs.readFileSync(pathToFile,"utf-8");
 
         while(query.startsWith("--") || query.startsWith("\n")){
             query = query.slice(query.indexOf("\n") + 1);

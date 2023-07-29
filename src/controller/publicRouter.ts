@@ -1,13 +1,10 @@
-import { getAllLocation } from "../database/crud/getAllLocation";
 import { Router } from "express";
-import { insertUser } from "../database/crud/userDAO";
-import { authentificate } from "../security/authentificate";
-import { getAllRooms} from "../database/crud/getAllRoom";
+import { getAllRooms } from "../services/room/getAllRooms";
+import { signin } from "../services/signin";
+import { signup } from "../services/signup";
 
 export const publicRouter = Router();
 
-publicRouter.get("/location",getAllLocation);
 publicRouter.get("/rooms", getAllRooms);
-publicRouter.post("/signup",insertUser);
-publicRouter.post("/signin",authentificate);
-
+publicRouter.post("/signin",signin);
+publicRouter.post("/signup", signup);

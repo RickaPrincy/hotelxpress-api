@@ -1,1 +1,0 @@
-SELECT "user"."id_user" from "user" WHERE "email"=$1 AND "password"=$2;
