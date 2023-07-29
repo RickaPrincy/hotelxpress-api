@@ -9,6 +9,7 @@ import { deleteRoom } from "../services/room/roomCrud";
 
 export const publicRouter = Router();
 
+//Some endpoint are temporary public
 publicRouter.delete("/delete/user/:id",deleteUser);
 publicRouter.get("/user/:id",getUserById);
 publicRouter.get("/room/:id",getRoomById);
