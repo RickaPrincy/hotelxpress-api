@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAllUsers } from "../services/user/getAllUsers";
+import { getAllUsers } from "../services/user/getUser";
 
 export const privateRouter = Router();
 
