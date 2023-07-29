@@ -10,4 +10,6 @@ SELECT
     "birthdate",
     "user_type"
 FROM
-    "user;
+    "user"
+WHERE
+    "id_user" = $1;
