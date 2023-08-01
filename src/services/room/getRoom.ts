@@ -1,8 +1,6 @@
 import { Request, Response } from "express";
 import { getRequest } from "../../utils/getRequest";
 import { shouldNumber } from "../../utils/shouldNumber";
-import { isNoError } from "../../utils/isNoError";
-import { pool } from "../../database/database";
 
 export function getAllRooms(req: Request, res: Response) {
     getRequest({
@@ -23,23 +21,21 @@ export function getRoomById(req: Request, res: Response) {
     }
 }
 
-export function getRoomByIntervalAndLocation(req: Request, res: Response) {
-    const { location, arrival, departure } = req.body;
-
-    getRequest({
-        path: "api/room/get_interval_location",
-        res: res,
-        valueRequest: [location, arrival, departure]
-    });
-}
-
-
 export function getRoomByOptions(req: Request, res: Response) {
     const { location, arrival, departure, id_room_type, id_options } = req.body;
     let addQuery = "";
 
+    if (location || arrival || departure || id_room_type) {
+        addQuery += location ? `AND "hotel"."state" = '${location}' ` : "";
+        addQuery += (arrival && departure) ? `
+            AND ("reservation"."arrival" NOT BETWEEN '${arrival}' AND '${departure}')
+            AND ("reservation"."departure" NOT BETWEEN '${arrival}' AND '${departure}') 
+         `: "";
+        addQuery += id_room_type ? `AND "room_type"."id_room_type" = ${id_room_type} `: "";
+    }
+
     if (id_options && id_options.length !== 0) {
-        addQuery = `
+        addQuery += `
             AND "room"."id_room" IN (
             SELECT "room_contain"."id_room"
             FROM "room_contain"
@@ -52,11 +48,11 @@ export function getRoomByOptions(req: Request, res: Response) {
             )
         );`
     }
-
+    
     getRequest({
         path: "api/room/get_options",
         res: res,
-        valueRequest: [location, arrival, departure, id_room_type],
-        addQuery: addQuery || ";" 
+        valueRequest: [],
+        addQuery: addQuery || ";"
     });
 }

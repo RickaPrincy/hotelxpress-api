@@ -9,8 +9,5 @@ LEFT JOIN "hotel"
 ON "hotel"."id_hotel" = "room"."id_hotel"
 LEFT JOIN "room_type"
 ON "room"."id_room_type" = "room_type"."id_room_type"
-WHERE 
-    "hotel"."city" = $1
-    AND ("reservation"."arrival" NOT BETWEEN $2 AND $3)
-    AND ("reservation"."departure" NOT BETWEEN $2 AND $3)
-    AND "room_type"."id_room_type" = $4
+WHERE NOT "room"."id_room" = -1
+    
