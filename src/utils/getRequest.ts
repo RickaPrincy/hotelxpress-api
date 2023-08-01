@@ -8,13 +8,16 @@ export type GetRequestType = {
     path: string,
     res: Response,
     valueRequest: (string | number)[]
-    notAcceptNull?: boolean
+    notAcceptNull?: boolean,
+    addQuery?: string
 };
 
 export function getRequest(options: GetRequestType) {
-    const { res, valueRequest, notAcceptNull, path } = options;
+    const { res, valueRequest, notAcceptNull, path, addQuery } = options;
 
-    pool.query(readQuery(`${path}`), valueRequest,
+    const query = readQuery(`${path}`) + (addQuery ? addQuery : "");
+    
+    pool.query(query, valueRequest,
         (err: Error, result: QueryResult) => {
             if (isNoError({ message: "Internal server error", status: 500 }, res, err)) {
                 if (notAcceptNull && result.rows.length === 0)
