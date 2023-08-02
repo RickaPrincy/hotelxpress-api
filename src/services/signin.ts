@@ -15,7 +15,6 @@ export async function signin(req: Request, res: Response) {
     if (req.body && req.body.email && req.body.password) {
 
         const { email, password } = req.body;
-
         const userFound = await prisma.user.findUnique({
             where: { email, password }
         });

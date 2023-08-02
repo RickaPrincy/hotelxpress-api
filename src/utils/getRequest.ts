@@ -4,7 +4,7 @@ type GetHandler<T> = {
     res: Response,
     promise: Promise<T>,
     error: { status?: number, message: string },
-    notAcceptNull?: boolean
+    notAcceptNull?: boolean,
 }
 
 export function getRequest<T>(config: GetHandler<T>) {
@@ -12,12 +12,10 @@ export function getRequest<T>(config: GetHandler<T>) {
 
     promise
         .then(data => {
-            if (notAcceptNull && !data) {
+            if (notAcceptNull && !data)
                 res.status(error.status || 200).send({ message: error.message });
-            }
-            else {
+            else
                 res.send(data);
-            }
         })
         .catch(error => {
             console.log(error);

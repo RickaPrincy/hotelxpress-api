@@ -1,5 +1,5 @@
 export type User = {
-    id_user: string,
+    id_user: number,
     first_name: string,
     last_name?: string,
     gender?: "M" | "F",

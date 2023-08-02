@@ -1,1 +1,0 @@
-DELETE FROM "room" WHERE "id_room"=$1;

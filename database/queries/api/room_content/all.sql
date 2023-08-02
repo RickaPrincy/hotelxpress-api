@@ -1,1 +1,0 @@
-SELECT * FROM "room_content";
