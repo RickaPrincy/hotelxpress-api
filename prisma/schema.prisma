@@ -1,0 +1,178 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id_user              Int                 @id @default(autoincrement())
+  first_name           String              @db.VarChar(255)
+  last_name            String?             @db.VarChar(255)
+  gender               String?             @db.Char(1)
+  email                String              @unique @db.VarChar(255)
+  phone_number         String              @unique @db.VarChar(30)
+  profil_url_img       String?             @db.VarChar(255)
+  nationality          String?             @db.VarChar(255)
+  birthdate            DateTime?           @db.Date
+  password             String              @db.VarChar(255)
+  id_user_type         Int
+  user_type            UserType            @relation(fields: [id_user_type], references: [id_user_type])
+  give_hotel_feedbacks GiveHotelFeedback[]
+  give_room_feedbacks  GiveRoomFeedback[]
+  reservations         Reservation[]
+  bookmarks            Bookmark[]
+  partnerships         Partnership[]
+}
+
+model UserType {
+  id_user_type Int    @id @default(autoincrement())
+  user_type    String @db.VarChar(255)
+  users        User[]
+}
+
+model GiveHotelFeedback {
+  text_body     String   @db.Text
+  date_feedback DateTime @default(now()) @db.Date
+  id_hotel      Int
+  id_user       Int
+  user          User     @relation(fields: [id_user], references: [id_user])
+  hotel         Hotel    @relation(fields: [id_hotel], references: [id_hotel])
+  note          Int?
+
+  @@id([id_hotel, id_user])
+}
+
+model GiveRoomFeedback {
+  text_body     String   @db.Text
+  date_feedback DateTime @default(now()) @db.Date
+  id_room       Int
+  id_user       Int
+  user          User     @relation(fields: [id_user], references: [id_user])
+  room          Room     @relation(fields: [id_room], references: [id_room])
+  note          Int?
+
+  @@id([id_room, id_user])
+}
+
+model Bookmark {
+  id_bookmark   Int    @id @default(autoincrement())
+  bookmark_name String @db.VarChar(255)
+  id_user       Int
+  user          User   @relation(fields: [id_user], references: [id_user])
+  id_room       Int
+  room          Room   @relation(fields: [id_room], references: [id_room])
+}
+
+model Partnership {
+  id_partnership   Int      @id @default(autoincrement())
+  date_proposition DateTime @db.Timestamp
+  partnership_type String   @db.VarChar(255)
+  is_accepted      Boolean  @default(false)
+  message          String   @db.Text
+  users            User[]
+  hotels           Hotel[]
+}
+
+model Reservation {
+  id_reservation      Int                  @id @default(autoincrement())
+  arrival             DateTime             @db.Timestamp()
+  departure           DateTime             @db.Timestamp()
+  date_reservation    DateTime             @db.Timestamp()
+  id_user             Int
+  user                User                 @relation(fields: [id_user], references: [id_user])
+  payments            Payment[]
+  reservation_contain ReservationContain[]
+}
+
+model Payment {
+  id_payment     Int         @id @default(autoincrement())
+  date_payement  DateTime    @default(now()) @db.Timestamp()
+  method_payment String      @db.VarChar(50)
+  amount_paid    Decimal
+  id_reservation Int
+  reservation    Reservation @relation(fields: [id_reservation], references: [id_reservation])
+}
+
+model Room {
+  id_room              Int                  @id @default(autoincrement())
+  room_category        String               @db.VarChar(100)
+  room_name            String               @db.VarChar(100)
+  room_url_img         String               @db.VarChar(255)
+  description          String               @db.Text
+  price_per_night      Decimal
+  price_per_hour       Decimal
+  room_contents        RoomContent[]
+  id_room_type         Int
+  room_type            RoomType             @relation(fields: [id_room_type], references: [id_room_type])
+  id_hotel             Int
+  hotel                Hotel                @relation(fields: [id_hotel], references: [id_hotel])
+  give_room_feedbacks  GiveRoomFeedback[]
+  reservation_contains ReservationContain[]
+  bookmark             Bookmark[]
+}
+
+model RoomContent {
+  id_room_content Int    @id @default(autoincrement())
+  content_name    String @unique @db.VarChar(100)
+  content_url_img String @db.VarChar(255)
+  rooms           Room[]
+}
+
+model RoomType {
+  id_room_type Int    @id @default(autoincrement())
+  type         String @db.VarChar(255)
+  rooms        Room[]
+}
+
+model ReservationContain {
+  room_quantity  Int         @default(1)
+  id_room        Int
+  id_reservation Int
+  room           Room        @relation(fields: [id_room], references: [id_room])
+  user           Reservation @relation(fields: [id_reservation], references: [id_reservation])
+
+  @@id([id_room, id_reservation])
+}
+
+model Hotel {
+  id_hotel             Int                 @id @default(autoincrement())
+  room_category        String              @db.VarChar(100)
+  hotel_name           String              @db.VarChar(100)
+  address              String              @db.VarChar(255)
+  city                 String              @db.VarChar(255)
+  state                String              @db.VarChar(255)
+  phone_number         String              @db.VarChar(255)
+  id_resto             Int?                @unique
+  resto                Resto?              @relation(fields: [id_resto], references: [id_resto])
+  rooms                Room[]
+  promotions           Promotion[]
+  medias               Media[]
+  partnerships         Partnership[]
+  give_hotel_feedbacks GiveHotelFeedback[]
+}
+
+model Promotion {
+  id_promotion Int      @id @default(autoincrement())
+  start_date   DateTime @db.Date
+  end_date     DateTime @db.Date
+  reduction    Decimal
+  description  String   @db.Text
+  hotels       Hotel[]
+}
+
+model Media {
+  id_media  Int     @id @default(autoincrement())
+  url_media String  @db.VarChar(255)
+  hotels    Hotel[]
+}
+
+model Resto {
+  id_resto      Int     @id @default(autoincrement())
+  speciality    String  @db.VarChar(255)
+  resto_url_img String  @db.VarChar(255)
+  description   String  @db.Text
+  hotel         Hotel[]
+}
