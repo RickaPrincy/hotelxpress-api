@@ -1,27 +1,26 @@
 import { Request, Response } from "express";
-import { pool } from "../database/database";
-import { readQuery } from "../utils/readQuery";
-import { QueryResult } from "pg";
-import { isNoError } from "../utils/isNoError";
+import { prisma } from "../database/database";
 
-export function signup(req: Request, res: Response) {
-    pool.query(
-        readQuery("api/user/add"),
-        [
-            req.body.first_name,
-            req.body.last_name || null,
-            req.body.gender || null,
-            req.body.email,
-            req.body.phone_number,
-            req.body.profil_url_img || null,
-            req.body.nationality || null,
-            req.body.birthdate || null,
-            req.body.password,
-            req.body.user_type,
-        ],
-        (error: Error, response: QueryResult) => {
-            if (isNoError({ message: "Signup failed", status: 401 }, res, error))
-                res.send({ user: "user added" });
-        }
-    )
+export async function signup(req: Request, res: Response) {
+    try {
+        await prisma.user.create({
+            data: {
+                first_name: req.body.first_name,
+                last_name: req.body.last_name || null,
+                gender: req.body.gender || null,
+                email: req.body.email,
+                phone_number: req.body.phone_number,
+                profil_url_img: req.body.profil_url_img || null,
+                nationality: req.body.nationality || null,
+                birthdate: req.body.birthdate || null,
+                password: req.body.password,
+                id_user_type: req.body.id_user_type,
+            }
+        });
+        res.send({user: "user added"});
+    }
+    catch(error){
+        console.log(error);
+        res.status(400).send({ message: "signup failed"}) 
+    }
 } 

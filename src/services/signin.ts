@@ -1,11 +1,6 @@
+import { prisma } from "../database/database";
 import generateToken from "../security/token";
 import { Request, Response } from "express";
-import * as dotenv from "dotenv";
-import { pool } from "../database/database";
-import { readQuery } from "../utils/readQuery";
-import { QueryResult } from "pg";
-
-dotenv.config();
 
 /**
  * Verifies authentication using the provided email and password.
@@ -16,21 +11,23 @@ dotenv.config();
  * @param res - The HTTP response object used to send the authentication response.
  * @returns Nothing directly, but sends a JSON response containing the JWT token and user ID upon successful authentication.
  */
-export function signin(req: Request, res: Response) {
-    if (req.body) {
-        const {email, password } = req.body;
+export async function signin(req: Request, res: Response) {
+    if (req.body && req.body.email && req.body.password) {
 
-        pool.query(readQuery("api/user/g_email_password"), [email, password], (error: Error, response: QueryResult) => {
-            if (error)
-                res.status(401).send({ message: "authentification failed" });
-            else if (response.rows.length === 0)
-                res.status(401).send({ message: "authentification failed" });
-            else {
-                const token = generateToken({ email: email, password: password });
-                res.send({ token: "Bearer " + token, expiresIn: 3600 });
-            }
+        const { email, password } = req.body;
+
+        const userFound = await prisma.user.findUnique({
+            where: { email, password }
         });
-    }else{
+
+        if (!userFound)
+            res.status(401).send({ message: "authentification failed" });
+        else {
+            const token = generateToken({ email: email, password: password });
+            res.send({ token: "Bearer " + token, expiresIn: 3600 });
+        }
+    }
+    else {
         res.status(401).send({ message: "authentification failed" });
     }
 }

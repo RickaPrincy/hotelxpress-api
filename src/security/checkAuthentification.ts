@@ -1,9 +1,8 @@
 import * as jwt from "jsonwebtoken";
 import { NextFunction, Request, Response } from "express";
 import * as dotenv from "dotenv";
-import { pool } from "../database/database";
-import { readQuery } from "../utils/readQuery";
 import { UserType } from "./token";
+import { prisma } from "../database/database";
 
 dotenv.config();
 
@@ -22,25 +21,25 @@ export function checkAuthentification(req: Request, res: Response, next: NextFun
 
     if (token) {
         // eslint-disable-next-line
-        jwt.verify(token, process.env.__TOKEN!, (err, user) => {
+        jwt.verify(token, process.env.__TOKEN!, async (err, user) => {
             if (err)
                 return res.status(403).send({ message: "Token not valid" });
 
             const { email, password } = user as UserType;
-
-            pool.query(readQuery("api/user/g_email_password"),[ email,password ], (error, response)=>{
-                if(error)
-                    res.status(400).send({ message: "Wrong authentification"});
-                else if(response.rows.length === 0)
-                    res.status(404).send({ message: "User not found"});
-                else{
-                    req.body = response.rows[0];
-                    next();
-                }
+            const userFound = await prisma.user.findUnique({
+                where: { email, password }
             });
+
+            if (userFound) {
+                req.body = userFound;
+                next();
+            }
+            else {
+                res.status(404).send({ message: "User not found" });
+            }
         });
     }
     else {
-        return res.status(403).send({ message: "authentification needed" });
+        res.status(403).send({ message: "authentification needed" });
     }
 }

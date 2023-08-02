@@ -10,7 +10,7 @@ export type UserType = Pick<User,"email" | "password">
 
 //-------------------------------------------
 function generateToken(payload: UserType) {
-    return jwt.sign(payload, process.env.__TOKEN!, {});
+    return jwt.sign(payload, process.env.__TOKEN!, { expiresIn: "24h" });
 }
 
 export default generateToken;

@@ -1,30 +1,26 @@
-import { readQuery } from "./readQuery";
-import { pool } from "../database/database";
-import { QueryResult } from "pg";
 import { Response } from "express";
-import { isNoError } from "./isNoError";
 
-export type GetRequestType = {
-    path: string,
+type GetHandler<T> = {
     res: Response,
-    valueRequest: (string | number)[]
-    notAcceptNull?: boolean,
-    addQuery?: string
-};
+    promise: Promise<T>,
+    error: { status?: number, message: string },
+    notAcceptNull?: boolean
+}
 
-export function getRequest(options: GetRequestType) {
-    const { res, valueRequest, notAcceptNull, path, addQuery } = options;
+export function getRequest<T>(config: GetHandler<T>) {
+    const { res, promise, error, notAcceptNull } = config;
 
-    const query = readQuery(`${path}`) + (addQuery ? addQuery : "");
-    
-    pool.query(query, valueRequest,
-        (err: Error, result: QueryResult) => {
-            if (isNoError({ message: "Internal server error", status: 500 }, res, err)) {
-                if (notAcceptNull && result.rows.length === 0)
-                    res.status(404).send("Not Found");
-                else
-                    res.send(result.rows);
+    promise
+        .then(data => {
+            if (notAcceptNull && !data) {
+                res.status(error.status || 200).send({ message: error.message });
             }
-        }
-    );
+            else {
+                res.send(data);
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(error.status || 200).send({ message: error.message });
+        })
 }
