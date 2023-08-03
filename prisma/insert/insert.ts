@@ -1,7 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
-
 async function insertUserType(){
     try {
         await prisma.userType.createMany({
@@ -13,7 +12,7 @@ async function insertUserType(){
                     user_type: "Admin" 
                 },
                 {
-                    user_type: "receptionniste"
+                    user_type: "Receptionniste"
                 },
                 {
                     user_type: "Loyal"
@@ -21,10 +20,9 @@ async function insertUserType(){
             ]
         })
     } catch (error) {
-        
+        console.log(error);
     }
 }
-
 
 async function insertUser(){
     try {
@@ -177,7 +175,7 @@ async function insertUser(){
             ]
         })
     } catch (error) {
-        
+        console.log(error);
     }
 }
 
@@ -248,9 +246,11 @@ async function insertRoomContent(){
             ]
         })
     } catch (error) {
-        
+        console.log(error);
     }
 }
+
+
 async function insertRoomType(){
     try {
         await prisma.roomType.createMany({
@@ -270,9 +270,10 @@ async function insertRoomType(){
             ]
         })
     } catch (error) {
-        
+        console.log(error);
     }
 }
+
 async function insertHotel(){
     try {
         await prisma.hotel.createMany({
@@ -322,7 +323,7 @@ async function insertHotel(){
             ]
         })
     } catch (error) {
-        
+        console.log(error);
     }
 }
 
@@ -338,7 +339,7 @@ async function insertRoom(){
                     description: "Profitez d'une nuit de sommeil paisible dans un lit king-size avec une literie de luxe, vous garantissant une expérience de sommeil incomparable.",
                     price_per_hour: 32.05,
                     price_per_night: 50.09,
-                    room_url_img: "http://localhost:5000/public/room.jpg",
+                    room_url_img: "http://localhost:5000/public/room.jpg"
                 },
                 { 
                     room_name: "chambre A4",
@@ -453,6 +454,8 @@ async function insertRoom(){
             ]
         })
     } catch (error) {
-        
+        console.log(error);         
     }
 }
+
+insertRoom();

@@ -16,7 +16,7 @@ export async function getSearch(req: Request, res: Response) {
     };
     
     try {
-        data.locations = (await prisma.hotel.findMany()).map(el => el.state);
+        data.locations = [...new Set((await prisma.hotel.findMany()).map(el => el.state))];
         data.room_types = await prisma.roomType.findMany();
         res.send(data);
     }
