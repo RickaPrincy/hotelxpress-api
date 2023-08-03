@@ -139,7 +139,6 @@ model ReservationContain {
 
 model Hotel {
   id_hotel             Int                 @id @default(autoincrement())
-  room_category        String              @db.VarChar(100)
   hotel_name           String              @db.VarChar(100)
   address              String              @db.VarChar(255)
   city                 String              @db.VarChar(255)
