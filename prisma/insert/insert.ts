@@ -186,40 +186,64 @@ async function insertRoomContent(){
         await prisma.roomContent.createMany({
             data: [
                 { 
-                    content_name: "Bureau et chaise",
-                    content_url_img: ""
+                    content_name: "Bureau",
+                    content_url_img: "http://localhost:5000/public/content.jpg"
                 },
                 { 
-                    content_name: "Wi-Fi gratuit",
-                    content_url_img: ""
+                    content_name: "Wi-Fi",
+                    content_url_img: "http://localhost:5000/public/content.jpg"
                 },
                 {
-                    content_name: "Télévision à écran plat",
-                    content_url_img: ""
+                    content_name: "Télévision",
+                    content_url_img: "http://localhost:5000/public/content.jpg"
                 },
                 {
-                    content_name: "Balcon privé avec vue panoramique",
-                    content_url_img: ""
+                    content_name: "Balcon",
+                    content_url_img: "http://localhost:5000/public/content.jpg"
                 },
                 { 
-                    content_name: "Grande télévision intelligente avec chaînes premium",
-                    content_url_img: ""
+                    content_name: "Baignoire",
+                    content_url_img: "http://localhost:5000/public/content.jpg"
                 },
                 { 
-                    content_name: "Coin salon avec canapé et table basse",
-                    content_url_img: ""
+                    content_name: "Climatisation",
+                    content_url_img: "http://localhost:5000/public/content.jpg"
                 },
                 { 
-                    content_name: "Accès gratuit au club pour enfants",
-                    content_url_img: ""
+                    content_name: "Minibar",
+                    content_url_img: "http://localhost:5000/public/content.jpg"
                 },
                 { 
-                    content_name: "Salle de bain privée avec baignoire",
-                    content_url_img: ""
+                    content_name: "Salle de bain",
+                    content_url_img: "http://localhost:5000/public/content.jpg"
                 },
                 { 
-                    content_name: "Ventilateur de plafond",
-                    content_url_img: ""
+                    content_name: "Jacuzzi",
+                    content_url_img: "http://localhost:5000/public/content.jpg"
+                },
+                { 
+                    content_name: "Kitchenette",
+                    content_url_img: "http://localhost:5000/public/content.jpg"
+                },
+                { 
+                    content_name: "Ventilateur",
+                    content_url_img: "http://localhost:5000/public/content.jpg"
+                },
+                { 
+                    content_name: "Cheminée",
+                    content_url_img: "http://localhost:5000/public/content.jpg"
+                },
+                { 
+                    content_name: "Divan",
+                    content_url_img: "http://localhost:5000/public/content.jpg"
+                },
+                { 
+                    content_name: "Coffre-fort",
+                    content_url_img: "http://localhost:5000/public/content.jpg"
+                },
+                { 
+                    content_name: "Mini-réfrigérateur",
+                    content_url_img: "http://localhost:5000/public/content.jpg"
                 }
             ]
         })
@@ -232,16 +256,16 @@ async function insertRoomType(){
         await prisma.roomType.createMany({
             data: [
                 { 
-                    type: "Chambre Standard "
+                    type: "Standard "
                 },
                 { 
-                    type: "Suite Deluxe" 
+                    type: "Deluxe" 
                 },
                 {
-                    type: "Chambre Familiale"
+                    type: "Familiale"
                 },
                 {
-                    type: "Chambre Économique"
+                    type: "Économique"
                 }
             ]
         })
@@ -249,20 +273,183 @@ async function insertRoomType(){
         
     }
 }
+async function insertHotel(){
+    try {
+        await prisma.hotel.createMany({
+            data: [
+                { 
+                    hotel_name: "HotelFly",
+                    address: "Lot AK25",
+                    city: "Antananarivo",
+                    state: "Madagascar",
+                    phone_number: "0340011100"
+                },
+                { 
+                    hotel_name: "HotelBeach",
+                    address: "Lot IB20",
+                    city: "Majunga",
+                    state: "Madagascar",
+                    phone_number: "0340122211"
+                },
+                { 
+                    hotel_name: "HotelWind",
+                    address: "Lot A20",
+                    city: "Fianaratsoa",
+                    state: "Madagascar",
+                    phone_number: "0340122211"
+                },
+                { 
+                    hotel_name: "HotelCity",
+                    address: "Lot B1",
+                    city: "Paris",
+                    state: "France",
+                    phone_number: "0123456789"
+                },
+                { 
+                    hotel_name: "HotelSkyline",
+                    address: "Lot B1",
+                    city: "Marseille",
+                    state: "France",
+                    phone_number: "0922476789"
+                },
+                { 
+                    hotel_name: "HotelDream",
+                    address: "Lot OK2",
+                    city: "Lyon",
+                    state: "France",
+                    phone_number: "0823450789"
+                }
+            ]
+        })
+    } catch (error) {
+        
+    }
+}
+
 async function insertRoom(){
     try {
         await prisma.room.createMany({
             data: [
                 { 
-                    room_name: "",
+                    room_name: "chambre A2",
                     id_room_type: 1,
                     id_hotel: 2, 
-                    room_category: "",
-                    description: "",
-                    price_per_hour: "",
-                    price_per_night: "",
-                    room_url_img: "",
+                    room_category: "couple",
+                    description: "Profitez d'une nuit de sommeil paisible dans un lit king-size avec une literie de luxe, vous garantissant une expérience de sommeil incomparable.",
+                    price_per_hour: 32.05,
+                    price_per_night: 50.09,
+                    room_url_img: "http://localhost:5000/public/room.jpg",
                 },
+                { 
+                    room_name: "chambre A4",
+                    id_room_type: 1,
+                    id_hotel: 3, 
+                    room_category: "famille",
+                    description: "Profitez d'une nuit de sommeil paisible dans un lit king-size avec une literie de luxe, vous garantissant une expérience de sommeil incomparable.",
+                    price_per_hour: 200.15,
+                    price_per_night: 350.09,
+                    room_url_img: "http://localhost:5000/public/room.jpg",
+                },
+                { 
+                    room_name: "chambre A6",
+                    id_room_type: 2,
+                    id_hotel: 1, 
+                    room_category: "solo",
+                    description: "Profitez d'une nuit de sommeil paisible dans un lit king-size avec une literie de luxe, vous garantissant une expérience de sommeil incomparable.",
+                    price_per_hour: 92.00,
+                    price_per_night: 150.00,
+                    room_url_img: "http://localhost:5000/public/room.jpg",
+                },
+                { 
+                    room_name: "chambre B2",
+                    id_room_type: 3,
+                    id_hotel: 2, 
+                    room_category: "couple",
+                    description: "Profitez d'une nuit de sommeil paisible dans un lit king-size avec une literie de luxe, vous garantissant une expérience de sommeil incomparable.",
+                    price_per_hour: 65.01,
+                    price_per_night: 90.09,
+                    room_url_img: "http://localhost:5000/public/room.jpg",
+                },
+                { 
+                    room_name: "chambre B4",
+                    id_room_type: 4,
+                    id_hotel: 3, 
+                    room_category: "famille",
+                    description: "Profitez d'une nuit de sommeil paisible dans un lit king-size avec une literie de luxe, vous garantissant une expérience de sommeil incomparable.",
+                    price_per_hour: 102.05,
+                    price_per_night: 250.09,
+                    room_url_img: "http://localhost:5000/public/room.jpg",
+                },
+                { 
+                    room_name: "chambre B6",
+                    id_room_type: 1,
+                    id_hotel: 1, 
+                    room_category: "solo",
+                    description: "Profitez d'une nuit de sommeil paisible dans un lit king-size avec une literie de luxe, vous garantissant une expérience de sommeil incomparable.",
+                    price_per_hour: 72.05,
+                    price_per_night: 110.09,
+                    room_url_img: "http://localhost:5000/public/room.jpg",
+                },
+                { 
+                    room_name: "chambre C2",
+                    id_room_type: 2,
+                    id_hotel: 2, 
+                    room_category: "couple",
+                    description: "Profitez d'une nuit de sommeil paisible dans un lit king-size avec une literie de luxe, vous garantissant une expérience de sommeil incomparable.",
+                    price_per_hour: 92.05,
+                    price_per_night: 150.09,
+                    room_url_img: "http://localhost:5000/public/room.jpg",
+                },
+                { 
+                    room_name: "chambre C4",
+                    id_room_type: 3,
+                    id_hotel: 3, 
+                    room_category: "famille",
+                    description: "Profitez d'une nuit de sommeil paisible dans un lit king-size avec une literie de luxe, vous garantissant une expérience de sommeil incomparable.",
+                    price_per_hour: 132.05,
+                    price_per_night: 250.09,
+                    room_url_img: "http://localhost:5000/public/room.jpg",
+                },
+                { 
+                    room_name: "chambre C6",
+                    id_room_type: 4,
+                    id_hotel: 1, 
+                    room_category: "solo",
+                    description: "Profitez d'une nuit de sommeil paisible dans un lit king-size avec une literie de luxe, vous garantissant une expérience de sommeil incomparable.",
+                    price_per_hour: 22.05,
+                    price_per_night: 50.00,
+                    room_url_img: "http://localhost:5000/public/room.jpg",
+                },
+                { 
+                    room_name: "chambre A1",
+                    id_room_type: 1,
+                    id_hotel: 3, 
+                    room_category: "couple",
+                    description: "Profitez d'une nuit de sommeil paisible dans un lit king-size avec une literie de luxe, vous garantissant une expérience de sommeil incomparable.",
+                    price_per_hour: 100.05,
+                    price_per_night: 120.09,
+                    room_url_img: "http://localhost:5000/public/room.jpg",
+                },
+                { 
+                    room_name: "chambre A3",
+                    id_room_type: 2,
+                    id_hotel: 1, 
+                    room_category: "couple",
+                    description: "Profitez d'une nuit de sommeil paisible dans un lit king-size avec une literie de luxe, vous garantissant une expérience de sommeil incomparable.",
+                    price_per_hour: 62.05,
+                    price_per_night: 90.09,
+                    room_url_img: "http://localhost:5000/public/room.jpg",
+                },
+                { 
+                    room_name: "chambre B1",
+                    id_room_type: 3,
+                    id_hotel: 2, 
+                    room_category: "famille",
+                    description: "Profitez d'une nuit de sommeil paisible dans un lit king-size avec une literie de luxe, vous garantissant une expérience de sommeil incomparable.",
+                    price_per_hour: 132.05,
+                    price_per_night: 250.09,
+                    room_url_img: "http://localhost:5000/public/room.jpg",
+                }
             ]
         })
     } catch (error) {
