@@ -6,6 +6,7 @@ import { getAllUserTypes } from "../services/utils/getUserTypes";
 import { signin } from "../services/signin";
 import { signup } from "../services/signup";
 import { getAllHotels, getHotelById } from "../services/hotel/getHotel";
+import { getAllHotelFeedbacks } from "../services/feedback/getHotelFeedback";
 
 export const publicRouter = Router();
 
@@ -14,6 +15,7 @@ publicRouter.get("/rooms", getAllRooms);
 publicRouter.get("/hotels",getAllHotels);
 publicRouter.get("/room_contents",getAllRoomContents);
 publicRouter.get("/user_types",getAllUserTypes);
+publicRouter.get("/hotel_feedbacks",getAllHotelFeedbacks);
 
 //utils
 publicRouter.get("/search",getSearch);
@@ -24,6 +26,10 @@ publicRouter.get("/hotel/:id",getHotelById);
 
 //room_content
 publicRouter.get("/find/room_content/:ilike",getRoomContentIlike);
+
+//limit 
+publicRouter.get("/find/hotel_feedback/:limit",getAllHotelFeedbacks);
+publicRouter.get("/find/room/:limit",getAllRooms);
 
 //authentification
 publicRouter.post("/signin", signin);
