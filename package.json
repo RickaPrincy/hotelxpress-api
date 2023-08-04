@@ -2,9 +2,12 @@
   "name": "hotelxpress_api",
   "version": "1.0.0",
   "description": "This is a simple api for hotelxpress",
-  "main": "server.ts",
+  "main": "main.ts",
   "scripts": {
     "lint": "eslint . --ext .ts",
+    "create-database": "npx prisma migrate deploy && npx prisma generate",
+    "insert-database": "npx ts-node prisma/insert/insert.ts",
+    "init-database": "npm run create-database && npm run insert-database",
     "build": "rm -rf dist && npx tsc",
     "dev": "npx nodemon src/main.ts",
     "start": "npm run build && node dist/main.js"

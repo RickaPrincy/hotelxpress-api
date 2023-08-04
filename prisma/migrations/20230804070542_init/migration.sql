@@ -132,7 +132,6 @@ CREATE TABLE "ReservationContain" (
 -- CreateTable
 CREATE TABLE "Hotel" (
     "id_hotel" SERIAL NOT NULL,
-    "room_category" VARCHAR(100) NOT NULL,
     "hotel_name" VARCHAR(100) NOT NULL,
     "address" VARCHAR(255) NOT NULL,
     "city" VARCHAR(255) NOT NULL,

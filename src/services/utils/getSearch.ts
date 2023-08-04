@@ -22,5 +22,5 @@ export async function getSearch(req: Request, res: Response) {
     }
     catch(error){
         res.status(500).send({message: "Internal Server error"});
-    };
+    }
 }

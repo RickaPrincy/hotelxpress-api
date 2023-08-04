@@ -21,6 +21,6 @@ export async function signup(req: Request, res: Response) {
     }
     catch(error){
         console.log(error);
-        res.status(400).send({ message: "signup failed"}) 
+        res.status(400).send({ message: "signup failed"});
     }
 } 

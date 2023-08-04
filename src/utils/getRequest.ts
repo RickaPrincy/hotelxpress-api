@@ -20,5 +20,5 @@ export function getRequest<T>(config: GetHandler<T>) {
         .catch(error => {
             console.log(error);
             res.status(error.status || 200).send({ message: error.message });
-        })
+        });
 }

@@ -10,7 +10,7 @@ const includeAllInformation = {
     partnerships: true,
     reservations: true,
     user_type: true
-}
+};
 
 export async function getAllUsers(req: Request, res: Response) {
     getRequest({
