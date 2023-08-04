@@ -31,7 +31,6 @@ export function checkAuthentification(req: Request, res: Response, next: NextFun
             });
 
             if (userFound) {
-                req.body = userFound;
                 if (req.url === "/find/user") 
                     res.send(userFound);
                 else 
