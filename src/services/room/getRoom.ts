@@ -11,7 +11,8 @@ const includeHotels = {
             state: true
         }
     },
-    room_contents:true
+    room_type: true,
+    room_contents: true
 }
 
 export async function getAllRooms(req: Request, res: Response) {
@@ -53,61 +54,58 @@ export async function getRoomById(req: Request, res: Response) {
 export async function getRoomByOptions(req: Request, res: Response) {
     const { id_options, arrival, departure, id_room_type, location } = req.body;
 
-    const room_contents = id_options ?
-        {
-            some: {
-                id_room_content: {
-                    in: id_options
-                }
-            }
-        } : {}
-        
-    const room_contains = await prisma.room.findMany({
-        where: {
-            room_contents: room_contents
-        }
-    });
-
-    if(arrival && departure){
-
-    }
-
     const state = location ? { state: location } : {}
     const room_type = id_room_type ? id_room_type : undefined
+    let reservation_founds: { id_reservation: number }[] = [];
 
     try {
-        const rooms = await prisma.room.findMany({
+        try {
+            if (arrival && departure) {
+                reservation_founds = await prisma.reservation.findMany({
+                    where: {
+                        AND: [
+                            { arrival: { lte: departure } },
+                            { departure: { gte: arrival } }
+                        ]
+                    },
+                    select: {
+                        id_reservation: true
+                    }
+                })
+            }
+        }
+        catch (error) {
+            console.log(error);
+            res.send({ message: "Bad Request" });
+            return;
+        }
+
+        let rooms = await prisma.room.findMany({
             where: {
-                room_contents: room_contents,
                 hotel: state,
-                id_room_type: room_type
+                id_room_type: room_type,
+                reservation_contains: {
+                    every: {
+                        id_reservation: { notIn: reservation_founds.map(el => el.id_reservation) }
+                    }
+                }
             },
-            include: includeHotels
+            include: includeHotels,
         });
+
+        if (id_options && Array.isArray(id_options)) {
+            rooms = rooms.filter(el => {
+                if (id_options)
+                    for (let id of id_options) {
+                        if (el.room_contents.map(el => el.id_room_content).indexOf(id) === -1)
+                            return false;
+                    }
+                return true;
+            });
+        }
         res.send(rooms);
     }
     catch (error) {
-        res.status(400).send({ message: "Bad request" });
+        res.status(500).send({ message: "Bad request" })
     }
-
-    // getRequest({
-    //     res,
-    //     error: { message: "Iternal Server Error", status: 500 },
-    //     promise: prisma.room.findMany({
-    //         where: {
-    //             id_room_type: id_room_type || undefined,
-    //             hotel: {
-    //                 city: location || undefined
-    //             },
-    //             room_contents: {
-    //                 some: {
-    //                     id_room_content: {
-    //                         in: id_options
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     })
-    // })
 }
-
