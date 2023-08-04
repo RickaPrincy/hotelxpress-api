@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import * as dotenv from "dotenv";
 import { UserType } from "./token";
 import { prisma } from "../database/database";
+import { includeAllInformation } from "../services/user/getUser";
 
 dotenv.config();
 
@@ -16,8 +17,7 @@ dotenv.config();
  * @param next - The callback function to call the next middleware or route handler if the token is valid.
  */
 export function checkAuthentification(req: Request, res: Response, next: NextFunction) {
-    const authHeader = req.headers["authorization"];
-    const token = authHeader?.split(" ")[1];
+    const token = req.headers["authorization"];
 
     if (token) {
         // eslint-disable-next-line
@@ -27,12 +27,15 @@ export function checkAuthentification(req: Request, res: Response, next: NextFun
 
             const { email, password } = user as UserType;
             const userFound = await prisma.user.findUnique({
-                where: { email, password }
+                where: { email, password }, include: includeAllInformation
             });
 
             if (userFound) {
                 req.body = userFound;
-                next();
+                if (req.url === "/find/user") 
+                    res.send(userFound);
+                else 
+                    next();
             }
             else {
                 res.status(404).send({ message: "User not found" });

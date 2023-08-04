@@ -23,7 +23,7 @@ export async function signin(req: Request, res: Response) {
             res.status(401).send({ message: "authentification failed" });
         else {
             const token = generateToken({ email: email, password: password });
-            res.send({ token: "Bearer " + token, expiresIn: 3600 });
+            res.send({ token: token, expiresIn: 3600 });
         }
     }
     else {

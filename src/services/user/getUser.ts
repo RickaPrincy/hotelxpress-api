@@ -3,7 +3,7 @@ import { getRequest } from "../../utils/getRequest";
 import { prisma } from "../../database/database";
 import { shouldNumber } from "../../utils/shouldNumber";
 
-const includeAllInformation = {
+export const includeAllInformation = {
     bookmarks: true,
     give_hotel_feedbacks: true,
     give_room_feedbacks: true,
@@ -22,6 +22,7 @@ export async function getAllUsers(req: Request, res: Response) {
     });
 }
 
+
 export async function getUserById(req: Request, res: Response) {
     const { id } = req.params;
 
@@ -29,8 +30,8 @@ export async function getUserById(req: Request, res: Response) {
         getRequest({
             res,
             error: { status: 500, message: "Internal Server Error" },
-            promise: prisma.user.findUnique({ 
-                where: { id_user: +id }, 
+            promise: prisma.user.findUnique({
+                where: { id_user: +id },
                 include: includeAllInformation
             })
         });
