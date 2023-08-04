@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAllRooms, getRoomById } from "../services/room/getRoom";
+import { getAllRooms, getRoomById, getRoomByOptions } from "../services/room/getRoom";
 import { getAllRoomContents, getRoomContentIlike } from "../services/room_content/getRoomContent";
 import { getSearch } from "../services/utils/getSearch";
 import { getAllUserTypes } from "../services/utils/getUserTypes";
@@ -30,6 +30,7 @@ publicRouter.get("/find/room_content/:ilike",getRoomContentIlike);
 //limit 
 publicRouter.get("/find/hotel_feedback/:limit",getAllHotelFeedbacks);
 publicRouter.get("/find/room/:limit",getAllRooms);
+publicRouter.post("/find/room/options",getRoomByOptions);
 
 //authentification
 publicRouter.post("/signin", signin);
