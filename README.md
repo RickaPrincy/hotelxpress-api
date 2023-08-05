@@ -36,7 +36,7 @@ npm install
 ## 3-   Almost there, now you need to create the database before running the server. The following command includes some inserts, so you don't need to make inserts manually:
 
 ```sh
-npx run init-database
+npm run init-database
 ```
 
 ## 4-   That's it, you can now run the server with :
