@@ -334,7 +334,7 @@ async function insertRoom() {
                 {
                     room_name: "chambre A2",
                     id_room_type: 1,
-                    id_hotel: 2,
+                    id_hotel: 4,
                     room_category: "couple",
                     description: "Profitez d'une nuit de sommeil paisible dans un lit king-size avec une literie de luxe, vous garantissant une expérience de sommeil incomparable.",
                     price_per_hour: 32.05,
@@ -364,7 +364,7 @@ async function insertRoom() {
                 {
                     room_name: "chambre B2",
                     id_room_type: 3,
-                    id_hotel: 2,
+                    id_hotel: 5,
                     room_category: "couple",
                     description: "Profitez d'une nuit de sommeil paisible dans un lit king-size avec une literie de luxe, vous garantissant une expérience de sommeil incomparable.",
                     price_per_hour: 65.01,
