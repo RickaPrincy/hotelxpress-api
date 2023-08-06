@@ -7,8 +7,7 @@ import { signin } from "../services/signin";
 import { signup } from "../services/signup";
 import { getAllHotels, getHotelById } from "../services/hotel/getHotel";
 import { getAllHotelFeedbacks } from "../services/feedback/getHotelFeedback";
-import { upload } from "../utils/multer";
-import { updateUser } from "../services/user/updateUser";
+import { getStats } from "../services/quick/getStats";
 
 export const publicRouter = Router();
 
@@ -37,3 +36,7 @@ publicRouter.post("/find/room/options",getRoomByOptions);
 //authentification
 publicRouter.post("/signin", signin);
 publicRouter.post("/signup", signup);
+
+//made quickly
+publicRouter.get("/stats", getStats);
+
