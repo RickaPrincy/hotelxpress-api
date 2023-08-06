@@ -797,6 +797,7 @@ async function launchAllInsert() {
     await insertGiveHotelFeedback();
     await insertManyRoomContain();
     await insertReservations();
+    await insertPayment();
 }
 
 launchAllInsert();

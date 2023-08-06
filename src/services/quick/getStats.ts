@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { prisma } from "../../database/database";
+import { Decimal } from "@prisma/client/runtime/library";
 
 export async function getStats(req: Request, res: Response) {
     try {
@@ -11,12 +12,7 @@ export async function getStats(req: Request, res: Response) {
                 rooms: true
             }
         });
-        const totalMoney = await prisma.payment.aggregate({
-            _sum: {
-                amount_paid: true
-            }
-        })
-
+        const totalMoney = (await prisma.payment.findMany()).reduce((a,b)=>Decimal.sum(a,b.amount_paid), new Decimal("0"));
         res.send({
             userCount,
             hotelInformations,
