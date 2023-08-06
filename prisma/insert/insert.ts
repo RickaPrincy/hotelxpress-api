@@ -668,115 +668,115 @@ async function insertPayment() {
                     id_reservation:1,
                     date_payement: "2023-12-05T12:48:00.000Z",
                     method_payment:"chèque",
-                    amount_paid: "350"
+                    amount_paid: 114
                 },
                 {
                     id_reservation:2,
                     date_payement: "2023-10-05T10:48:00.000Z",
                     method_payment:"cash",
-                    amount_paid: "150"
+                    amount_paid: 800
                 },
                 {
                     id_reservation:3,
                     date_payement: "2023-10-05T12:48:00.000Z",
                     method_payment:"chèque",
-                    amount_paid: "250"
+                    amount_paid: 200
                 },
                 {
                     id_reservation:4,
                     date_payement: "2024-01-10T14:48:00.000Z",
                     method_payment:"chèque",
-                    amount_paid: "150"
+                    amount_paid: 100
                 },
                 {
                     id_reservation:5,
                     date_payement: "2024-04-05T14:48:00.000Z",
                     method_payment:"cash",
-                    amount_paid: "150"
+                    amount_paid: 209
                 },
                 {
                     id_reservation:6,
                     date_payement: "2024-03-05T14:48:00.000Z",
                     method_payment:"cash",
-                    amount_paid: "150"
+                    amount_paid: 450
                 },
                 {
                     id_reservation:7,
                     date_payement: "2023-09-06T14:48:00.000Z",
                     method_payment:"chèque",
-                    amount_paid: "150"
+                    amount_paid: 320
                 },
                 {
                     id_reservation:8,
                     date_payement: "2024-02-05T14:48:00.000Z",
                     method_payment:"cash",
-                    amount_paid: "150"
+                    amount_paid: 201
                 },
                 {
                     id_reservation:9,
                     date_payement: "2024-01-05T14:48:00.000Z",
                     method_payment:"chèque",
-                    amount_paid: "150"
+                    amount_paid: 170
                 },
                 {
                     id_reservation:10,
                     date_payement: "2023-12-05T14:48:00.000Z",
                     method_payment:"cash",
-                    amount_paid: "150"
+                    amount_paid: 190
                 },
                 {
                     id_reservation:11,
                     date_payement: "2023-11-10T14:48:00.000Z",
                     method_payment:"cash",
-                    amount_paid: "150"
+                    amount_paid: 180
                 },
                 {
                     id_reservation:12,
                     date_payement: "2023-11-05T14:48:00.000Z",
                     method_payment:"chèque",
-                    amount_paid: "150"
+                    amount_paid: 600
                 },
                 {
                     id_reservation:13,
                     date_payement: "2023-11-01T14:48:00.000Z",
                     method_payment:"cash",
-                    amount_paid: "150"
+                    amount_paid: 100
                 },
                 {
                     id_reservation:14,
                     date_payement: "2023-10-09T14:48:00.000Z",
                     method_payment:"chèque",
-                    amount_paid: "150"
+                    amount_paid: 500
                 },
                 {
                     id_reservation:15,
                     date_payement: "2023-10-02T14:48:00.000Z",
                     method_payment:"cash",
-                    amount_paid: "150"
+                    amount_paid: 50
                 },
                 {
                     id_reservation:16,
                     date_payement: "2023-10-11T14:48:00.000Z",
                     method_payment:"cash",
-                    amount_paid: "150"
+                    amount_paid: 310
                 },
                 {
                     id_reservation:17,
                     date_payement: "2023-10-01T14:48:00.000Z",
                     method_payment:"cash",
-                    amount_paid: "150"
+                    amount_paid: 300
                 },
                 {
                     id_reservation:18,
                     date_payement: "2023-09-10T14:48:00.000Z",
                     method_payment:"cash",
-                    amount_paid: "150"
+                    amount_paid: 400
                 },
                 {
                     id_reservation:19,
                     date_payement: "2023-09-06T14:48:00.000Z",
                     method_payment:"chèque",
-                    amount_paid: "150"
+                    amount_paid: 260
                 }
             ]
         })
