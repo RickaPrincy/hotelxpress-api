@@ -37,7 +37,7 @@ async function insertUser() {
                     gender: "M",
                     last_name: "Doe",
                     nationality: "Mada",
-                    profil_url_img: "http://localhost:5000/public/profile.jpg",
+                    profil_url_img: "http://localhost:5000/public/default.png",
                     id_user_type: 1
                 },
                 {
@@ -49,7 +49,7 @@ async function insertUser() {
                     gender: "M",
                     last_name: "Joe",
                     nationality: "Mada",
-                    profil_url_img: "http://localhost:5000/public/profile.jpg",
+                    profil_url_img: "http://localhost:5000/public/default.png",
                     id_user_type: 2
                 },
                 {
@@ -61,7 +61,7 @@ async function insertUser() {
                     gender: "M",
                     last_name: "Johnson",
                     nationality: "Mada",
-                    profil_url_img: "http://localhost:5000/public/profile.jpg",
+                    profil_url_img: "http://localhost:5000/public/default.png",
                     id_user_type: 3
                 },
                 {
@@ -73,7 +73,7 @@ async function insertUser() {
                     gender: "M",
                     last_name: "Smith",
                     nationality: "Mada",
-                    profil_url_img: "http://localhost:5000/public/profile.jpg",
+                    profil_url_img: "http://localhost:5000/public/default.png",
                     id_user_type: 1
                 },
                 {
@@ -85,7 +85,7 @@ async function insertUser() {
                     gender: "F",
                     last_name: "Williams",
                     nationality: "Mada",
-                    profil_url_img: "http://localhost:5000/public/profile.jpg",
+                    profil_url_img: "http://localhost:5000/public/default.png",
                     id_user_type: 2
                 },
                 {
@@ -97,7 +97,7 @@ async function insertUser() {
                     gender: "F",
                     last_name: "Lee",
                     nationality: "Mada",
-                    profil_url_img: "http://localhost:5000/public/profile.jpg",
+                    profil_url_img: "http://localhost:5000/public/default.png",
                     id_user_type: 3
                 },
                 {
@@ -109,7 +109,7 @@ async function insertUser() {
                     gender: "M",
                     last_name: "Taylor",
                     nationality: "Mada",
-                    profil_url_img: "http://localhost:5000/public/profile.jpg",
+                    profil_url_img: "http://localhost:5000/public/default.png",
                     id_user_type: 1
                 },
                 {
@@ -121,7 +121,7 @@ async function insertUser() {
                     gender: "F",
                     last_name: "Martinez",
                     nationality: "Mada",
-                    profil_url_img: "http://localhost:5000/public/profile.jpg",
+                    profil_url_img: "http://localhost:5000/public/default.png",
                     id_user_type: 2
                 },
                 {
@@ -133,7 +133,7 @@ async function insertUser() {
                     gender: "M",
                     last_name: "Anderson",
                     nationality: "Mada",
-                    profil_url_img: "http://localhost:5000/public/profile.jpg",
+                    profil_url_img: "http://localhost:5000/public/default.png",
                     id_user_type: 3
                 },
                 {
@@ -145,7 +145,7 @@ async function insertUser() {
                     gender: "M",
                     last_name: "Rodriguez",
                     nationality: "Mada",
-                    profil_url_img: "http://localhost:5000/public/profile.jpg",
+                    profil_url_img: "http://localhost:5000/public/default.png",
                     id_user_type: 4
                 },
                 {
@@ -157,7 +157,7 @@ async function insertUser() {
                     gender: "F",
                     last_name: "Davis",
                     nationality: "Mada",
-                    profil_url_img: "http://localhost:5000/public/profile.jpg",
+                    profil_url_img: "http://localhost:5000/public/default.png",
                     id_user_type: 4
                 },
                 {
@@ -169,7 +169,7 @@ async function insertUser() {
                     gender: "F",
                     last_name: "Wilson",
                     nationality: "Mada",
-                    profil_url_img: "http://localhost:5000/public/profile.jpg",
+                    profil_url_img: "http://localhost:5000/public/default.png",
                     id_user_type: 4
                 }
             ]

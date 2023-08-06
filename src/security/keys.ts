@@ -1,3 +1,4 @@
 export const keys = [
-    "ricka", "princy"
+    "web", "nice",
+    "web_wizards", "hei"
 ]

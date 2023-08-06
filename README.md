@@ -3,6 +3,8 @@
 This is a simple API for [HotelXpress](./HotelXpress.md), providing essential functionalities to manage hotel operations.
 
 # Getting started
+To create an admin user, you need a key, the key are `web`,`nice`, `hei`  or `web_wizards` for the moments.
+
 To run the server locally, you need to make some configurations:
 
 ## 1-   First, create a file named `.env` and write your configurations like this:
@@ -33,7 +35,8 @@ __TOKEN=ggggggggggdgdddddkfdf54df54df215f54df54d15dfd1fdf12df1d2f1d
 npm install
 ```
 
-## 3-   Almost there, now you need to create the database before running the server. The following command includes some inserts, so you don't need to make inserts manually:
+## 3-   Almost there, now you need to create the database before running the server.
+The following command includes some inserts, so you don't need to make inserts manually:
 
 ```sh
 npm run init-database
