@@ -29,7 +29,7 @@ async function insertUser() {
         await prisma.user.createMany({
             data: [
                 {
-                    email: "John2@gmail.com",
+                    email: "john@gmail.com",
                     first_name: "John2",
                     password: "1234",
                     phone_number: "0340550011",
@@ -41,7 +41,7 @@ async function insertUser() {
                     id_user_type: 1
                 },
                 {
-                    email: "Bob@gmail.com",
+                    email: "bob@gmail.com",
                     first_name: "Bob",
                     password: "1234",
                     phone_number: "0340650098",
