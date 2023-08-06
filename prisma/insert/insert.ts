@@ -534,6 +534,48 @@ async function insertManyRoomContain() {
     }
 }
 
+async function insertReservations() {
+    try {
+        await prisma.reservation.createMany({
+            data: [
+                {
+                    arrival: "2011-10-05T14:48:00.000Z",
+                    departure: "2011-10-05T14:48:00.000Z",
+                    id_user: 1,
+                    date_reservation: "2012-10-05T14:48:00.000Z" 
+                },
+                {
+                    arrival: "2011-10-05T14:48:00.000Z",
+                    departure: "2013-10-05T14:48:00.000Z",
+                    id_user: 2,
+                    date_reservation: "2011-10-05T14:48:00.000Z"
+                },
+                {
+                    arrival: "2011-10-05T14:48:00.000Z",
+                    departure: "2011-10-05T14:48:00.000Z",
+                    id_user: 2,
+                    date_reservation: "2014-10-05T14:48:00.000Z"
+                },
+                {
+                    arrival: "2011-10-05T14:48:00.000Z",
+                    departure: "2011-10-05T14:48:00.000Z",
+                    id_user: 2,
+                    date_reservation: "2015-10-05T14:48:00.000Z"
+                },
+                {
+                    arrival: "2011-10-05T14:48:00.000Z",
+                    departure: "2011-10-05T14:48:00.000Z",
+                    id_user: 4,
+                    date_reservation: "2016-10-05T14:48:00.000Z"
+                }
+            ]
+        })
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
 //-------------------------------------------------------
 
 async function launchAllInsert() {
@@ -545,6 +587,7 @@ async function launchAllInsert() {
     await insertRoom();
     await insertGiveHotelFeedback();
     await insertManyRoomContain();
+    await insertReservations();
 }
 
 launchAllInsert();

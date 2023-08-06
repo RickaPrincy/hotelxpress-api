@@ -8,7 +8,8 @@ export async function getReservations(req: Request, res: Response) {
         promise: prisma.reservation.findMany({
             orderBy:{
                 date_reservation: "desc"
-            }}),
+            },include: {user:true}
+        }),
         error: {status: 500, message :"Internal server error"}
     });
 }

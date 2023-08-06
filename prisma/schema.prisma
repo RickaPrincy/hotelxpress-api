@@ -80,7 +80,7 @@ model Reservation {
   id_reservation      Int                  @id @default(autoincrement())
   arrival             DateTime             @db.Timestamp()
   departure           DateTime             @db.Timestamp()
-  date_reservation    DateTime             @db.Timestamp()
+  date_reservation    DateTime             @db.Timestamp() @default(now())
   id_user             Int
   user                User                 @relation(fields: [id_user], references: [id_user])
   payments            Payment[]
