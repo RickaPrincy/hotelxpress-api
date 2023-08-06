@@ -19,7 +19,7 @@ export async function signup(req: Request, res: Response) {
         user_type = 2;
     }
 
-    const defaultUrl = `http://localhost:${process.env.__SERVER_PORT}/public/man.png`;
+    const defaultUrl = `http://localhost:${process.env.__SERVER_PORT}/public/default.png`;
 
     try {
         const newUser = await prisma.user.create({
