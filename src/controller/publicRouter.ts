@@ -8,7 +8,7 @@ import { signup } from "../services/signup";
 import { getAllHotels, getHotelById } from "../services/hotel/getHotel";
 import { getAllHotelFeedbacks } from "../services/feedback/getHotelFeedback";
 import { getStats } from "../services/quick/getStats";
-import { getReservations } from "../services/quick/getReservations";
+import { getReservations, getReservationsUser } from "../services/quick/getReservations";
 
 export const publicRouter = Router();
 
@@ -41,3 +41,4 @@ publicRouter.post("/signup", signup);
 //made quickly
 publicRouter.get("/stats", getStats);
 publicRouter.get("/reservations",getReservations);
+publicRouter.get("/reservation/:id",getReservationsUser);
