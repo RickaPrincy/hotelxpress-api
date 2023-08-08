@@ -128,13 +128,12 @@ model RoomType {
 }
 
 model ReservationContain {
+  id_reservation_contain Int @id @default(autoincrement())
   room_quantity  Int         @default(1)
   id_room        Int
   id_reservation Int
   room           Room        @relation(fields: [id_room], references: [id_room])
   user           Reservation @relation(fields: [id_reservation], references: [id_reservation])
-
-  @@id([id_room, id_reservation])
 }
 
 model Hotel {

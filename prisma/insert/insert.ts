@@ -539,28 +539,28 @@ async function insertReservations() {
         await prisma.reservation.createMany({
             data: [
                 {
-                    arrival: "2023-12-05T12:48:00.000Z",
-                    departure: "2023-12-06T14:48:00.000Z",
+                    arrival: "2020-12-05T12:48:00.000Z",
+                    departure: "2020-12-06T14:48:00.000Z",
                     id_user: 1,
-                    date_reservation: "2023-12-05T12:48:00.000Z" 
+                    date_reservation: "2020-12-05T12:48:00.000Z" 
                 },
                 {
-                    arrival: "2023-10-05T10:48:00.000Z",
-                    departure: "2023-10-05T12:48:00.000Z",
+                    arrival: "2019-10-05T10:48:00.000Z",
+                    departure: "2019-10-05T12:48:00.000Z",
                     id_user: 2,
-                    date_reservation: "2023-10-05T10:48:00.000Z"
+                    date_reservation: "2019-10-05T10:48:00.000Z"
                 },
                 {
-                    arrival: "2023-10-05T12:48:00.000Z",
+                    arrival: "2020-10-05T12:48:00.000Z",
                     departure: "2023-10-05T14:48:00.000Z",
                     id_user: 1,
-                    date_reservation: "2023-10-05T12:48:00.000Z"
+                    date_reservation: "2020-10-05T12:48:00.000Z"
                 },
                 {
-                    arrival: "2024-01-10T14:48:00.000Z",
+                    arrival: "2020-01-10T14:48:00.000Z",
                     departure: "2024-01-11T14:48:00.000Z",
                     id_user: 2,
-                    date_reservation: "2024-01-10T14:48:00.000Z"
+                    date_reservation: "2020-01-10T14:48:00.000Z"
                 },
                 {
                     arrival: "2024-04-05T14:48:00.000Z",
